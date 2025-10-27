@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Writing Companion ✍️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- RESET & GLOBAL --- */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    html, body {
+      height: 100%;
+      overflow: hidden; /* Empêche le défilement global */
+    }
+    body {
+      font-family: "Inter", sans-serif;
+      background: #eef2f7;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background: linear-gradient(180deg, #3a506b, #1e2022);
+      color: #f8f9fa;
+      padding: 25px 20px;
+      transition: all 0.4s ease;
+      box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+      z-index: 10;
+      overflow-y: auto;
+    }
+    .sidebar.closed { width: 70px; }
+    .sidebar h2 {
+      font-size: 1.5em;
+      margin-bottom: 40px;
+      color: #f1c40f;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    .sidebar.closed h2 { opacity: 0; }
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      color: #f8f9fa;
+      text-decoration: none;
+      margin: 15px 0;
+      padding: 12px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      font-size: 1em;
+    }
+    .sidebar a:hover { background: rgba(241,196,15,0.15); transform: translateX(5px); }
+    .sidebar a span.icon { font-size: 1.4em; margin-right: 15px; min-width: 25px; text-align: center; transition: all 0.3s ease; }
+    .sidebar.closed a span.text { display: none; }
+
+    /* --- MAIN CONTENT --- */
+    .main {
+      margin-left: 250px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      transition: margin-left 0.4s ease;
+      height: 100vh; /* Hauteur fixe de la fenêtre */
+      overflow: hidden; /* Empêche le défilement global */
+    }
+    .sidebar.closed ~ .main { margin-left: 70px; }
+
+    header {
+      text-align: center;
+      background: #fff;
+      padding: 25px 15px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      position: sticky;
+      top:0;
+      z-index:5;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      flex-shrink: 0; /* Empêche le header de rétrécir */
+    }
+    header h1 { margin:0; font-size:2rem; color:#222; }
+
+    .workspace {
+      flex: 1;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      background: #eef2f7;
+      overflow-y: auto; /* Permet le défilement uniquement dans la zone de travail */
+    }
+
+    .editor {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      padding: 35px;
+      max-width: 900px;
+      width: 100%;
+      min-height: 550px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s;
+    }
+    .editor:hover { transform: translateY(-2px); }
+
+    .options { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
+    select, input[type="file"] {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      background: #fafafa;
+      font-size: 14px;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+    select:hover, input[type="file"]:hover { border-color: #007bff; box-shadow: 0 0 5px rgba(0,123,255,0.3); }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      resize: vertical;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: "Inter", sans-serif;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+    textarea:focus { border-color: #007bff; box-shadow: 0 0 8px rgba(0,123,255,0.2); }
+
+    button {
+      display: block;
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg,#007bff,#00c6ff);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover { background: linear-gradient(90deg,#0056b3,#0088cc); transform: translateY(-2px); }
+
+    .loader { display: none; text-align: center; margin: 20px 0; }
+    .loader span { display:inline-block; width:10px; height:10px; margin:0 4px; background:#007bff; border-radius:50%; animation:bounce 0.6s infinite alternate; }
+    .loader span:nth-child(2) { animation-delay:0.2s; }
+    .loader span:nth-child(3) { animation-delay:0.4s; }
+    @keyframes bounce { to { opacity:0.3; transform: translateY(-6px); } }
+
+    .output {
+      margin-top: 30px;
+      padding: 25px;
+      background: #f9fafc;
+      border-radius: 16px;
+      border: 1px solid #e0e0e0;
+      font-size: 16px;
+      line-height:1.7;
+      white-space: pre-wrap;
+      color:#333;
+      max-height:450px;
+      overflow-y:auto;
+    }
+
+    footer {
+      text-align:center;
+      padding:15px;
+      background:white;
+      font-size:14px;
+      color:#777;
+      border-top:1px solid #eee;
+      flex-shrink: 0; /* Empêche le footer de rétrécir */
+    }
+
+    @media (max-width:768px) {
+      .sidebar {
+        width: 200px;
+      }
+      .sidebar.closed {
+        width: 60px;
+      }
+      .main {
+        margin-left: 200px;
+      }
+      .sidebar.closed ~ .main {
+        margin-left: 60px;
+      }
+      .editor { padding:25px; }
+      textarea { min-height:100px; }
+    }
+  </style>
+</head>
+<body>
+  
+  {% include 'sidebar.html' %}
+  <div class="main">
+    <header><h1>✍️ AI Writing Companion</h1></header>
+    <div class="workspace">
+      <div class="editor">
+        <div class="options">
+          <select id="mode">
+            <option>Rewrite</option>
+            <option>Generate ideas</option>
+            <option>Affirmation</option>
+            <option>Make it poetic</option>
+            <option>Summarize</option>
+          </select>
+          <select id="style">
+            <option>Professional</option>
+            <option>Emotional</option>
+            <option>Journalistic</option>
+            <option>Persuasive</option>
+            <option>Poetic</option>
+            <option>Minimalist</option>
+          </select>
+          <select id="tone">
+            <option>Neutral</option>
+            <option>Confident</option>
+            <option>Inspirational</option>
+            <option>Friendly</option>
+            <option>Formal</option>
+            <option>Casual</option>
+          </select>
+          <input type="file" id="pdf-file" accept=".pdf">
+        </div>
+
+        <textarea id="user-input" placeholder="Write or paste your text here..."></textarea>
+        <button id="submit-btn">✨ Enhance My Writing</button>
+
+        <div class="loader" id="loader"><span></span><span></span><span></span></div>
+        <div class="output" id="output"></div>
+      </div>
+    </div>
+    <footer>Made with ❤️</footer>
+  </div>
+
+  <script>
+    // --- AI button logic ---
+    const btn = document.getElementById("submit-btn");
+    const loader = document.getElementById("loader");
+    const output = document.getElementById("output");
+
+    btn.addEventListener("click", async () => {
+        const message = document.getElementById("user-input").value.trim();
+        const mode = document.getElementById("mode").value;
+        const style = document.getElementById("style").value;
+        const tone = document.getElementById("tone").value;
+        const pdfFile = document.getElementById("pdf-file").files[0];
+
+        if (!message && !pdfFile) {
+            output.innerText = "⚠️ Please enter some text or upload a PDF.";
+            return;
+        }
+
+        loader.style.display = "block";
+        output.innerText = "";
+
+        try {
+            // Créer un FormData pour envoyer les données
+            const formData = new FormData();
+            formData.append("message", message); // Utilise "message" comme dans votre Python
+            formData.append("mode", mode);
+            formData.append("style", style);
+            formData.append("tone", tone);
+            
+            if (pdfFile) {
+                formData.append("pdf_file", pdfFile);
+            }
+
+            const response = await fetch("/chat", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            output.innerText = data.response;
+            
+        } catch(err) {
+            console.error("Error:", err);
+            output.innerText = "❌ Error connecting to the AI service: " + err.message;
+        } finally {
+            loader.style.display = "none";
+            
+            // Scroll vers le résultat
+            setTimeout(() => {
+                output.scrollTop = output.scrollHeight;
+            }, 50);
+        }
+    });
+</script>
+</body>
+</html>
