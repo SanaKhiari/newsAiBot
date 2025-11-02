@@ -459,7 +459,7 @@ Pour toute question ou problème :
 
 1. 🐛 **Issues GitHub** – Signaler un bug
 2. 💬 **Discussions** – Demander de l'aide
-3. 📧 **Email** – contact@votre-projet.com
+3. 📧 **Email** – ahmed.sakka@esprit.tn
 
 ---
 
