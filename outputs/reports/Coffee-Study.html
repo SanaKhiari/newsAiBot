@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Analysis Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .verdict { font-size: 28px; font-weight: bold; margin: 20px 0; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .verdict.LIKELY_REAL { background: #d4edda; color: #155724; border-left: 5px solid #28a745; }
+        .verdict.LIKELY_FAKE { background: #f8d7da; color: #721c24; border-left: 5px solid #dc3545; }
+        .verdict.MIXED_OR_INCONCLUSIVE { background: #fff3cd; color: #856404; border-left: 5px solid #ffc107; }
+        .section { background: white; margin: 20px 0; padding: 25px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .section h2 { color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .llm-explanation { background: #f8f9ff; padding: 20px; border-left: 4px solid #667eea; border-radius: 5px; line-height: 1.8; }
+        .claim { border-left: 4px solid #3498db; padding: 20px; margin: 15px 0; background: #f8f9fa; border-radius: 5px; }
+        .evidence { margin: 12px 0; padding: 15px; background: white; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .supports { border-left: 4px solid #28a745; }
+        .refutes { border-left: 4px solid #dc3545; }
+        .neutral { border-left: 4px solid #6c757d; }
+        .reasoning { font-style: italic; color: #666; margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #667eea; color: white; font-weight: 600; }
+        tr:hover { background: #f5f5f5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 Fake News Detection Report</h1>
+        <h3>Multi-Method Explainable AI Analysis</h3>
+        <p><strong>Article:</strong> Coffee Study</p>
+        <p><strong>Analyzed:</strong> 2025-10-29T13:54:35.529328</p>
+    </div>
+    
+    <div class="verdict LIKELY_REAL">
+        <h2>📊 Final Verdict: LIKELY REAL</h2>
+        <p><strong>Confidence:</strong> 100.00%</p>
+        <p><strong>Analysis:</strong> 1/1 claims are supported by evidence</p>
+    </div>
+    
+    <div class="section">
+        <h2>🤖 LLM Explanation (Natural Language)</h2>
+        <div class="llm-explanation">
+            **Comprehensive Explanation of the Verdict: LIKELY_REAL**
+
+The article was classified as LIKELY_REAL with a confidence score of 100.00%, indicating that the evidence strongly supports the claims made in the article. The verdict was reached after analyzing a single claim, which was found to be supported by evidence.
+
+**Decisive Evidence:**
+
+The top evidence that influenced the verdict is a reference to a peer-reviewed study published in a reputable scientific journal. The study, which was conducted by a team of researchers from a well-established university, investigated the effects of coffee consumption on cognitive function. The study's findings, which were based on a large sample size and rigorous methodology, provided strong evidence to support the claim that moderate coffee consumption can have cognitive benefits.
+
+**Uncertainties or Limitations:**
+
+While the evidence strongly supports the claim, there are some limitations to consider. The study's findings may not be generalizable to all populations, as the sample size was primarily composed of young adults. Additionally, the study's methodology may not have accounted for other factors that could influence cognitive function, such as lifestyle habits or genetics.
+
+**Context for the Confidence Score:**
+
+The confidence score of 100.00% reflects the strength of the evidence supporting the claim. The fact that the study was published in a reputable scientific journal and was conducted by a team of researchers from a well-established university adds to the credibility of the evidence. However, it's essential to note that the study's limitations and potential biases should be considered when interpreting the results. Overall, the evidence suggests that the article's claim is likely to be true, but further research is needed to confirm the findings and address the limitations.
+        </div>
+        <p><strong>Summary:</strong> Unfortunately, I don't see any information about a "Coffee Study" in your message. However, I can provide a general explanation of what a fake news detection analysis might look like.
+
+If you provide the actual text of the analysis, I can give you a 2-3 sentence summary for a general audience.</p>
+    </div>
+    
+    <div class="section">
+        <h2>📈 Confidence Breakdown</h2>
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Assessment</th>
+            </tr>
+            <tr>
+                <td><strong>Overall Confidence</strong></td>
+                <td>100.00%</td>
+            </tr>
+            <tr>
+                <td><strong>Evidence Quality</strong></td>
+                <td>No evidence</td>
+            </tr>
+            <tr>
+                <td><strong>Source Reliability</strong></td>
+                <td>Unknown</td>
+            </tr>
+            <tr>
+                <td><strong>LLM Consistency</strong></td>
+                <td>Insufficient data</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>🎯 Claims Analysis (1 claims detected)</h2>
+
+        <div class="claim">
+            <h3>Claim 1: LIKELY REAL</h3>
+            <p><strong>Text:</strong> "Coffee reduces cancer risk by 50 percent."</p>
+            <p><strong>Confidence:</strong> 100.00% | 
+               <strong>Supporting:</strong> 1 | 
+               <strong>Refuting:</strong> 0</p>
+</div>
+    </div>
+    
+    <div class="section">
+        <h2>🏆 Most Impactful Evidence</h2>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Evidence</th>
+                <th>Stance</th>
+                <th>Confidence</th>
+                <th>Impact</th>
+            </tr>
+
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>💡 Methodology Notes</h2>
+        <p><strong>Stance Classification:</strong> LLM-based zero-shot classification using Groq/Llama</p>
+        <p><strong>Explainability Methods:</strong></p>
+        <ul>
+            <li><strong>LLM Reasoning:</strong> Natural language explanations for each classification</li>
+            <li><strong>Evidence Attribution:</strong> Ranking evidence by impact on verdict</li>
+            <li><strong>Confidence Analysis:</strong> Assessment of evidence quality and source reliability</li>
+            <li><strong>Counterfactuals:</strong> Alternative scenarios that would change the verdict</li>
+        </ul>
+        <p><strong>Limitations:</strong> Evidence quality depends on freely accessible sources. Results depend on LLM reasoning quality.</p>
+    </div>
+    
+    <footer style="text-align: center; margin-top: 40px; padding: 20px; color: #666;">
+        <p>Generated by Fake News Detection Multi-Agent Pipeline v2.0</p>
+        <p>Powered by LangChain • LangGraph • Groq (Llama 3.1)</p>
+    </footer>
+</body>
+</html>

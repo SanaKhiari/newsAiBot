@@ -1,0 +1,10 @@
+2025-10-29 17:47:58.994 | INFO     | __main__:<module>:44 - Flask application initialized
+2025-10-29 17:47:58.994 | INFO     | __main__:startup:50 - 
+================================================================================
+2025-10-29 17:47:58.994 | INFO     | __main__:startup:51 - FAKE NEWS DETECTION SYSTEM - DEPLOYMENT
+2025-10-29 17:47:58.996 | INFO     | __main__:startup:52 - ================================================================================
+2025-10-29 17:47:58.996 | INFO     | __main__:startup:59 - ✓ Directories created
+2025-10-29 17:47:58.996 | INFO     | __main__:startup:60 - ✓ Flask app ready
+2025-10-29 17:47:58.997 | INFO     | __main__:startup:61 - ================================================================================
+
+2025-10-29 17:48:27.326 | ERROR    | __main__:error:151 - Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.

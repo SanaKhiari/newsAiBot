@@ -1,0 +1,298 @@
+2025-10-29 22:20:12.377 | INFO     | __main__:<module>:44 - Flask application initialized
+2025-10-29 22:20:12.377 | INFO     | __main__:startup:50 - 
+================================================================================
+2025-10-29 22:20:12.377 | INFO     | __main__:startup:51 - FAKE NEWS DETECTION SYSTEM - DEPLOYMENT
+2025-10-29 22:20:12.377 | INFO     | __main__:startup:52 - ================================================================================
+2025-10-29 22:20:12.377 | INFO     | __main__:startup:59 - ✓ Directories created
+2025-10-29 22:20:12.377 | INFO     | __main__:startup:60 - ✓ Flask app ready
+2025-10-29 22:20:12.384 | INFO     | __main__:startup:61 - ================================================================================
+
+2025-10-29 22:20:52.507 | INFO     | __main__:analyze:84 - 
+================================================================================
+2025-10-29 22:20:52.507 | INFO     | __main__:analyze:85 - NEW ANALYSIS REQUEST
+2025-10-29 22:20:52.507 | INFO     | __main__:analyze:86 - ================================================================================
+2025-10-29 22:20:52.507 | INFO     | __main__:analyze:103 - ✓ Request validated: Text | Title: Untitled Article
+2025-10-29 22:20:52.507 | INFO     | __main__:analyze:104 - → Starting workflow...
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:run_workflow:178 - 
+================================================================================
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:run_workflow:179 - STARTING FAKE NEWS DETECTION WORKFLOW
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:run_workflow:180 - ================================================================================
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:run_workflow:192 - Initial state created
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:run_workflow:193 -   URL: None
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:run_workflow:194 -   Text length: 2257 chars
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:run_workflow:195 -   Title: Untitled Article
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:build_workflow:78 - ============================================================
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:build_workflow:79 - BUILDING LANGGRAPH WORKFLOW
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:build_workflow:80 - ============================================================
+2025-10-29 22:20:52.507 | INFO     | src.orchestration.workflow:build_workflow:86 - Adding nodes...
+2025-10-29 22:20:52.512 | INFO     | src.orchestration.workflow:build_workflow:97 - ✓ 8 nodes added
+2025-10-29 22:20:52.512 | INFO     | src.orchestration.workflow:build_workflow:100 - Setting entry point...
+2025-10-29 22:20:52.512 | INFO     | src.orchestration.workflow:build_workflow:102 - ✓ Entry point: ingest
+2025-10-29 22:20:52.513 | INFO     | src.orchestration.workflow:build_workflow:105 - Adding conditional edges...
+2025-10-29 22:20:52.513 | INFO     | src.orchestration.workflow:build_workflow:115 -   ✓ ingest → [claim_detection | error_handler]
+2025-10-29 22:20:52.513 | INFO     | src.orchestration.workflow:build_workflow:126 -   ✓ claim_detection → [embedding | explainability | error_handler]
+2025-10-29 22:20:52.513 | INFO     | src.orchestration.workflow:build_workflow:136 -   ✓ evidence_retrieval → [stance_classification | error_handler]
+2025-10-29 22:20:52.513 | INFO     | src.orchestration.workflow:build_workflow:139 - Adding linear edges...
+2025-10-29 22:20:52.514 | INFO     | src.orchestration.workflow:build_workflow:142 -   ✓ embedding → evidence_retrieval
+2025-10-29 22:20:52.514 | INFO     | src.orchestration.workflow:build_workflow:145 -   ✓ stance_classification → aggregation
+2025-10-29 22:20:52.519 | INFO     | src.orchestration.workflow:build_workflow:148 -   ✓ aggregation → explainability
+2025-10-29 22:20:52.520 | INFO     | src.orchestration.workflow:build_workflow:151 -   ✓ explainability → END
+2025-10-29 22:20:52.520 | INFO     | src.orchestration.workflow:build_workflow:154 -   ✓ error_handler → END
+2025-10-29 22:20:52.520 | INFO     | src.orchestration.workflow:build_workflow:157 - Compiling workflow...
+2025-10-29 22:20:52.543 | INFO     | src.orchestration.workflow:build_workflow:160 - ============================================================
+2025-10-29 22:20:52.547 | INFO     | src.orchestration.workflow:build_workflow:161 - ✓ WORKFLOW COMPILED SUCCESSFULLY
+2025-10-29 22:20:52.547 | INFO     | src.orchestration.workflow:build_workflow:162 - ============================================================
+2025-10-29 22:20:52.547 | INFO     | src.orchestration.workflow:run_workflow:199 - 
+Executing workflow...
+2025-10-29 22:20:52.597 | INFO     | src.orchestration.nodes:ingest_node:61 - ============================================================
+2025-10-29 22:20:52.597 | INFO     | src.orchestration.nodes:ingest_node:62 - NODE 1: INGEST - Parsing article...
+2025-10-29 22:20:52.597 | INFO     | src.orchestration.nodes:ingest_node:63 - ============================================================
+2025-10-29 22:20:52.597 | INFO     | src.orchestration.nodes:_get_agents:39 - Initializing agents (first run)...
+2025-10-29 22:20:53.391 | INFO     | src.agents.ingest_agent:__init__:22 - Loaded spaCy model: en_core_web_sm
+2025-10-29 22:20:54.034 | INFO     | src.agents.claim_detection_agent:__init__:22 - Claim detection agent initialized
+2025-10-29 22:20:54.040 | INFO     | src.agents.claim_embedding_agent:__init__:19 - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2025-10-29 22:20:58.267 | INFO     | src.agents.claim_embedding_agent:__init__:24 - Embedding model loaded successfully
+2025-10-29 22:20:58.269 | INFO     | src.agents.evidence_retrieval_agent:__init__:34 - Loaded 10 RSS feeds
+2025-10-29 22:20:58.269 | INFO     | src.agents.aggregation_agent:__init__:23 - Aggregation agent initialized
+2025-10-29 22:20:58.825 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 22:20:59.797 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 22:20:59.797 | INFO     | src.agents.explainability_agent:__init__:31 - Multi-Method Explainability Agent initialized
+2025-10-29 22:20:59.803 | INFO     | src.orchestration.nodes:_get_agents:48 - All agents initialized
+2025-10-29 22:20:59.803 | INFO     | src.agents.ingest_agent:process_text:94 - Processing raw text input
+2025-10-29 22:20:59.943 | INFO     | src.agents.ingest_agent:process_text:114 - Successfully processed text: 11 sentences
+2025-10-29 22:20:59.943 | INFO     | src.utils:__exit__:120 - ✓ Article ingestion completed in 0.14s
+2025-10-29 22:20:59.943 | INFO     | src.orchestration.nodes:ingest_node:80 - ✓ Article ingested: Untitled Article
+2025-10-29 22:20:59.943 | INFO     | src.orchestration.nodes:ingest_node:81 -   Sentences: 11, Words: 302
+2025-10-29 22:20:59.956 | INFO     | src.orchestration.nodes:claim_detection_node:98 - ============================================================
+2025-10-29 22:20:59.956 | INFO     | src.orchestration.nodes:claim_detection_node:99 - NODE 2: CLAIM DETECTION - Extracting claims...
+2025-10-29 22:20:59.956 | INFO     | src.orchestration.nodes:claim_detection_node:100 - ============================================================
+2025-10-29 22:20:59.963 | INFO     | src.agents.claim_detection_agent:extract_claims:54 - Extracting claims from 11 sentences
+2025-10-29 22:21:00.179 | INFO     | src.agents.claim_detection_agent:extract_claims:84 - Extracted 3 claims from 11 sentences
+2025-10-29 22:21:00.179 | INFO     | src.utils:__exit__:120 - ✓ Claim detection completed in 0.22s
+2025-10-29 22:21:00.181 | INFO     | src.orchestration.nodes:claim_detection_node:112 - ✓ Claims extracted: 3 claims found
+2025-10-29 22:21:00.181 | INFO     | src.orchestration.nodes:claim_detection_node:115 - Sample claims:
+2025-10-29 22:21:00.181 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   1. According to anonymous sources working inside pharmaceutical manufacturing facil... (confidence: 0.50)
+2025-10-29 22:21:00.183 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   2. Whistleblowers claim that this global conspiracy involves the collaboration of t... (confidence: 0.45)
+2025-10-29 22:21:00.183 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   3. Former physician Dr. James Wilson, who claims to have worked in vaccine developm... (confidence: 0.45)
+2025-10-29 22:21:00.200 | INFO     | src.orchestration.nodes:embedding_node:134 - ============================================================
+2025-10-29 22:21:00.200 | INFO     | src.orchestration.nodes:embedding_node:135 - NODE 3: EMBEDDING - Generating claim embeddings...
+2025-10-29 22:21:00.200 | INFO     | src.orchestration.nodes:embedding_node:136 - ============================================================
+2025-10-29 22:21:00.200 | INFO     | src.agents.claim_embedding_agent:embed_claims:45 - Generating embeddings for 3 claims
+2025-10-29 22:21:00.333 | INFO     | src.agents.claim_embedding_agent:embed_claims:63 - Successfully embedded 3 claims
+2025-10-29 22:21:00.333 | INFO     | src.utils:__exit__:120 - ✓ Embedding generation completed in 0.13s
+2025-10-29 22:21:00.333 | INFO     | src.orchestration.nodes:embedding_node:150 - ✓ Embeddings generated for 3 claims
+2025-10-29 22:21:00.361 | INFO     | src.orchestration.nodes:evidence_retrieval_node:168 - ============================================================
+2025-10-29 22:21:00.361 | INFO     | src.orchestration.nodes:evidence_retrieval_node:169 - NODE 4: EVIDENCE RETRIEVAL - Searching for evidence...
+2025-10-29 22:21:00.361 | INFO     | src.orchestration.nodes:evidence_retrieval_node:170 - ============================================================
+2025-10-29 22:21:00.361 | INFO     | src.agents.evidence_retrieval_agent:retrieve_evidence:67 - Retrieving evidence for 3 claims
+2025-10-29 22:21:00.366 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:00.367 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:00.367 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:00.367 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:00.367 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:00.367 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:01.457 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): According to anonymous sources working inside phar completed in 1.09s
+2025-10-29 22:21:01.767 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): According to anonymous sources working inside phar completed in 0.31s
+2025-10-29 22:21:02.082 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): According to anonymous sources working inside phar completed in 0.31s
+2025-10-29 22:21:02.622 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): According to anonymous completed in 0.54s
+2025-10-29 22:21:02.622 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 22:21:02.622 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:21:05.609 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: According to anonymous sources working inside phar
+2025-10-29 22:21:05.611 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: According to anonymous sources working inside phar completed in 2.99s
+2025-10-29 22:21:07.360 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 22:21:08.361 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:08.366 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:08.366 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:08.366 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:08.366 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:08.366 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:09.408 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): anonymous sources working inside pharmaceutical completed in 1.03s
+2025-10-29 22:21:09.756 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): anonymous sources working inside pharmaceutical completed in 0.35s
+2025-10-29 22:21:10.053 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): anonymous sources working inside pharmaceutical completed in 0.30s
+2025-10-29 22:21:10.743 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): anonymous sources working completed in 0.69s
+2025-10-29 22:21:10.743 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 22:21:10.758 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:21:12.675 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: anonymous sources working inside pharmaceutical
+2025-10-29 22:21:12.679 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: anonymous sources working inside pharmaceutical completed in 1.92s
+2025-10-29 22:21:14.751 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 22:21:14.753 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 22:21:15.755 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:15.755 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:15.755 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:15.755 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:15.755 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:15.755 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:16.795 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): According to anonymous sources completed in 1.04s
+2025-10-29 22:21:17.214 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): According to anonymous sources completed in 0.41s
+2025-10-29 22:21:17.724 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): According to anonymous sources completed in 0.51s
+2025-10-29 22:21:18.226 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): According to anonymous completed in 0.50s
+2025-10-29 22:21:18.230 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 22:21:18.230 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:21:20.403 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: According to anonymous sources
+2025-10-29 22:21:20.403 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: According to anonymous sources completed in 2.17s
+2025-10-29 22:21:21.739 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 22:21:22.743 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 22:21:22.747 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 22:21:22.747 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 22:21:22.748 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 22:21:22.751 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 2
+2025-10-29 22:21:22.753 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 2
+2025-10-29 22:21:22.753 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: According to anonymous sources working inside phar... completed in 22.39s
+2025-10-29 22:21:22.753 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:22.753 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:22.763 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:22.763 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:22.765 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:22.765 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:23.725 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Whistleblowers claim that this global conspiracy i completed in 0.96s
+2025-10-29 22:21:24.216 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Whistleblowers claim that this global conspiracy i completed in 0.49s
+2025-10-29 22:21:24.584 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Whistleblowers claim that this global conspiracy i completed in 0.37s
+2025-10-29 22:21:25.073 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 4)
+2025-10-29 22:21:25.073 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Whistleblowers claim that completed in 0.49s
+2025-10-29 22:21:25.073 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 22:21:25.073 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:21:26.949 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Whistleblowers claim that this global conspiracy i
+2025-10-29 22:21:26.949 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Whistleblowers claim that this global conspiracy i completed in 1.88s
+2025-10-29 22:21:30.853 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:30.853 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:30.853 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:30.853 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:30.855 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:30.855 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:32.824 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 1)
+2025-10-29 22:21:32.825 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): the World Health Organization completed in 1.97s
+2025-10-29 22:21:32.827 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 22:21:32.828 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:173 - Good results from Google FC, moving forward
+2025-10-29 22:21:32.828 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 22:21:32.829 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 4
+2025-10-29 22:21:32.829 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 22:21:32.830 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 22:21:32.831 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 22:21:32.833 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 4
+2025-10-29 22:21:32.837 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Whistleblowers claim that this global conspiracy i... completed in 10.08s
+2025-10-29 22:21:32.838 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:32.838 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:32.839 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:32.850 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:32.851 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:32.852 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:35.006 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Former physician Dr. James Wilson, who claims to h completed in 2.15s
+2025-10-29 22:21:35.577 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Former physician Dr. James Wilson, who claims to h completed in 0.57s
+2025-10-29 22:21:36.120 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Former physician Dr. James Wilson, who claims to h completed in 0.54s
+2025-10-29 22:21:36.793 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Former physician Dr. completed in 0.67s
+2025-10-29 22:21:36.793 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 22:21:36.793 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:21:40.100 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Former physician Dr. James Wilson, who claims to h
+2025-10-29 22:21:40.102 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Former physician Dr. James Wilson, who claims to h completed in 3.31s
+2025-10-29 22:21:41.143 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 22:21:42.147 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:42.147 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:42.147 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:42.147 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:42.151 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:42.152 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:43.235 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): James Wilson completed in 1.08s
+2025-10-29 22:21:43.606 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): James Wilson completed in 0.36s
+2025-10-29 22:21:43.858 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): James Wilson completed in 0.25s
+2025-10-29 22:21:44.153 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): James Wilson completed in 0.30s
+2025-10-29 22:21:44.153 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 22:21:44.153 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:21:45.985 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: James Wilson
+2025-10-29 22:21:45.985 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: James Wilson completed in 1.82s
+2025-10-29 22:21:46.145 | WARNING  | src.agents.evidence_retrieval_agent:_search_gdelt:419 - GDELT connection error (will retry): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-10-29 22:21:54.514 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 22:21:54.517 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 22:21:55.520 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:21:55.523 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:21:55.525 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:21:55.525 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:21:55.525 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:21:55.525 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:21:56.459 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): former physician dr. james wilson, completed in 0.93s
+2025-10-29 22:21:56.951 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): former physician dr. james wilson, completed in 0.49s
+2025-10-29 22:21:57.205 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): former physician dr. james wilson, completed in 0.25s
+2025-10-29 22:21:57.566 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): former physician dr. completed in 0.36s
+2025-10-29 22:21:57.569 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 22:21:57.570 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:21:59.984 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: former physician dr. james wilson,
+2025-10-29 22:21:59.984 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: former physician dr. james wilson, completed in 2.41s
+2025-10-29 22:22:00.960 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 22:22:01.962 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 22:22:01.962 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 22:22:01.963 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 22:22:01.963 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 22:22:01.963 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 22:22:01.965 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 22:22:03.403 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Former physician Dr. James completed in 1.42s
+2025-10-29 22:22:03.823 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Former physician Dr. James completed in 0.42s
+2025-10-29 22:22:04.193 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Former physician Dr. James completed in 0.37s
+2025-10-29 22:22:04.693 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Former physician Dr. completed in 0.50s
+2025-10-29 22:22:04.693 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 22:22:04.693 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 22:22:06.609 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Former physician Dr. James
+2025-10-29 22:22:06.609 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Former physician Dr. James completed in 1.92s
+2025-10-29 22:22:07.608 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 22:22:08.611 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 22:22:08.611 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 22:22:08.611 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 22:22:08.611 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 22:22:08.612 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 2
+2025-10-29 22:22:08.613 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 2
+2025-10-29 22:22:08.615 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Former physician Dr. James Wilson, who claims to h... completed in 35.78s
+2025-10-29 22:22:08.615 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval completed in 68.25s
+2025-10-29 22:22:08.615 | INFO     | src.orchestration.nodes:evidence_retrieval_node:187 - ✓ Evidence retrieved: 8 items across 3 claims
+2025-10-29 22:22:08.616 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - According to anonymous sources working inside pharmaceutical...: 2 evidence items
+2025-10-29 22:22:08.616 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Whistleblowers claim that this global conspiracy involves th...: 4 evidence items
+2025-10-29 22:22:08.616 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Former physician Dr. James Wilson, who claims to have worked...: 2 evidence items
+2025-10-29 22:22:08.653 | INFO     | src.orchestration.nodes:stance_classification_node:204 - ============================================================
+2025-10-29 22:22:08.653 | INFO     | src.orchestration.nodes:stance_classification_node:205 - NODE 5: STANCE CLASSIFICATION
+2025-10-29 22:22:08.653 | INFO     | src.orchestration.nodes:stance_classification_node:206 - ============================================================
+2025-10-29 22:22:09.075 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 22:22:10.106 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 22:22:10.106 | INFO     | src.agents.llm_stance_agent:__init__:22 - LLM Stance Classifier (Groq) initialized
+2025-10-29 22:22:10.106 | INFO     | src.orchestration.nodes:stance_classification_node:214 - Classifying stance for evidence items
+2025-10-29 22:22:10.106 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:34 - Classifying stance with Groq LLM for all evidence
+2025-10-29 22:22:13.845 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:94 - Stance classification complete: ✓8 | ✗0 | ⊘0
+2025-10-29 22:22:13.846 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:105 - Stance distribution: {'SUPPORTS': 0, 'REFUTES': 3, 'NEUTRAL': 5}
+2025-10-29 22:22:13.846 | INFO     | src.orchestration.nodes:stance_classification_node:221 - ✓ Stance classification complete
+2025-10-29 22:22:13.847 | INFO     | src.orchestration.nodes:stance_classification_node:222 - ============================================================
+2025-10-29 22:22:13.875 | INFO     | src.orchestration.nodes:aggregation_node:258 - ============================================================
+2025-10-29 22:22:13.883 | INFO     | src.orchestration.nodes:aggregation_node:259 - NODE 6: AGGREGATION - Generating verdicts...
+2025-10-29 22:22:13.883 | INFO     | src.orchestration.nodes:aggregation_node:260 - ============================================================
+2025-10-29 22:22:14.344 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 22:22:14.887 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 22:22:14.891 | INFO     | src.agents.verdict_agent:__init__:16 - Verdict Agent initialized
+2025-10-29 22:22:14.891 | ERROR    | src.agents.verdict_agent:generate_verdict:48 - Verdict generation failed: VerdictAgent._llm_verdict_generation() takes 3 positional arguments but 4 were given
+2025-10-29 22:22:14.892 | INFO     | src.orchestration.nodes:aggregation_node:276 - Claim: According to anonymous sources working inside pharmaceutical...
+2025-10-29 22:22:14.893 | INFO     | src.orchestration.nodes:aggregation_node:277 -   Verdict: INCONCLUSIVE
+2025-10-29 22:22:14.893 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Confidence: 0%
+2025-10-29 22:22:14.894 | ERROR    | src.agents.verdict_agent:generate_verdict:48 - Verdict generation failed: VerdictAgent._llm_verdict_generation() takes 3 positional arguments but 4 were given
+2025-10-29 22:22:14.894 | INFO     | src.orchestration.nodes:aggregation_node:276 - Claim: Whistleblowers claim that this global conspiracy involves th...
+2025-10-29 22:22:14.894 | INFO     | src.orchestration.nodes:aggregation_node:277 -   Verdict: INCONCLUSIVE
+2025-10-29 22:22:14.895 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Confidence: 0%
+2025-10-29 22:22:14.896 | ERROR    | src.agents.verdict_agent:generate_verdict:48 - Verdict generation failed: VerdictAgent._llm_verdict_generation() takes 3 positional arguments but 4 were given
+2025-10-29 22:22:14.897 | INFO     | src.orchestration.nodes:aggregation_node:276 - Claim: Former physician Dr. James Wilson, who claims to have worked...
+2025-10-29 22:22:14.898 | INFO     | src.orchestration.nodes:aggregation_node:277 -   Verdict: INCONCLUSIVE
+2025-10-29 22:22:14.898 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Confidence: 0%
+2025-10-29 22:22:14.898 | INFO     | src.orchestration.nodes:aggregation_node:292 - ✓ Article Verdict: MIXED_OR_INCONCLUSIVE
+2025-10-29 22:22:14.899 | INFO     | src.orchestration.nodes:aggregation_node:293 -   Confidence: 0%
+2025-10-29 22:22:14.900 | INFO     | src.orchestration.nodes:aggregation_node:294 - ============================================================
+2025-10-29 22:22:14.933 | INFO     | src.orchestration.nodes:explainability_node:307 - ============================================================
+2025-10-29 22:22:14.933 | INFO     | src.orchestration.nodes:explainability_node:308 - NODE 7: EXPLAINABILITY - Generating explanations...
+2025-10-29 22:22:14.933 | INFO     | src.orchestration.nodes:explainability_node:309 - ============================================================
+2025-10-29 22:22:15.363 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 22:22:16.405 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 22:22:16.405 | INFO     | src.agents.explainability_agent:__init__:31 - Multi-Method Explainability Agent initialized
+2025-10-29 22:22:16.405 | INFO     | src.orchestration.nodes:explainability_node:323 - ✓ Explanations generated
+2025-10-29 22:22:16.405 | INFO     | src.orchestration.nodes:explainability_node:324 - ============================================================
+2025-10-29 22:22:16.441 | INFO     | src.orchestration.workflow:run_workflow:202 - 
+================================================================================
+2025-10-29 22:22:16.444 | INFO     | src.orchestration.workflow:run_workflow:203 - WORKFLOW COMPLETED
+2025-10-29 22:22:16.444 | INFO     | src.orchestration.workflow:run_workflow:204 - ================================================================================
+2025-10-29 22:22:16.445 | INFO     | src.orchestration.workflow:run_workflow:227 - Final verdict: MIXED_OR_INCONCLUSIVE
+2025-10-29 22:22:16.447 | INFO     | __main__:analyze:135 - ✓ Analysis complete: MIXED_OR_INCONCLUSIVE (0%)
+2025-10-29 22:22:16.448 | INFO     | __main__:analyze:136 - ================================================================================
+

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detective</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', Segoe UI, Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f3f7, #e1e9f0);
+            color: #2d3436;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 260px;
+            background: linear-gradient(180deg, #30475e, #222831);
+            color: #f8f9fa;
+            padding: 20px;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.25);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.closed {
+            width: 70px;
+        }
+
+        .sidebar h2 {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            color: #f1c40f;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar.closed h2 {
+            opacity: 0;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: #f8f9fa;
+            text-decoration: none;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .sidebar a:hover {
+            background: rgba(241, 196, 15, 0.15);
+            transform: translateX(5px);
+        }
+
+        .sidebar a span.icon {
+            font-size: 1.4em;
+            margin-right: 15px;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .sidebar.closed a span.text {
+            display: none;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-container {
+            margin-left: 260px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            transition: margin-left 0.4s ease;
+        }
+
+        .main-container.sidebar-closed {
+            margin-left: 70px;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background: linear-gradient(135deg, #f0f3f7, #e1e9f0);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: #222;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* ========== WORKSPACE ========== */
+        .workspace {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #f0f3f7, #e1e9f0);
+            overflow-y: auto;
+        }
+
+        .editor-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            min-height: 500px;
+        }
+
+        /* ========== FORM STYLES ========== */
+        .form-section h2 {
+            font-size: 1.8rem;
+            color: #222;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .input-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.5;
+        }
+
+        .char-counter {
+            display: block;
+            text-align: right;
+            margin-top: 5px;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .analyze-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========== ERROR MESSAGE ========== */
+        .error-box {
+            display: none;
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc3545;
+            animation: slideDown 0.3s ease;
+        }
+
+        .error-box.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== RESULTS SECTION ========== */
+        .results-container {
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        .results-container.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .result-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .verdict-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-real {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+        }
+
+        .badge-fake {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+        }
+
+        .badge-mixed {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            color: #856404;
+        }
+
+        .confidence-bar {
+            margin: 15px 0;
+        }
+
+        .confidence-bar-bg {
+            width: 100%;
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .confidence-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 1.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .reasoning-text {
+            background: linear-gradient(135deg, #f0f3f7, #e1e9f0);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            color: #555;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+
+        /* ========== CLAIMS & EVIDENCE ========== */
+        .claim-item, .evidence-item {
+            background: #f8f9fa;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #17a2b8;
+            transition: all 0.3s ease;
+        }
+
+        .claim-item:hover, .evidence-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .evidence-item {
+            border-left-color: #28a745;
+        }
+
+        .claim-text, .evidence-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .claim-meta, .evidence-source {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .evidence-stance {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .stance-supports {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .stance-refutes {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .stance-neutral {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        /* ========== EXPLANATION ========== */
+        .explanation-text {
+            background: linear-gradient(135deg, #f0f3f7, #e1e9f0);
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            border-radius: 10px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* ========== METADATA ========== */
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .metadata-item {
+            text-align: center;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .metadata-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* ========== ACTION BUTTONS ========== */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .btn-secondary {
+            padding: 12px 24px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ========== MODAL ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e0e0e0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .modal-content p {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .modal-content small {
+            color: #999;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .sidebar.closed {
+                width: 60px;
+            }
+
+            .main-container {
+                margin-left: 200px;
+            }
+
+            .main-container.sidebar-closed {
+                margin-left: 60px;
+            }
+
+            .editor-container {
+                padding: 25px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .input-tabs {
+                flex-wrap: wrap;
+            }
+
+            .metadata {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn-secondary {
+                width: 100%;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== SIDEBAR ========== -->
+    <div class="sidebar" id="sidebar">
+        <h2 id="sidebarToggle">🔍 Detector</h2>
+        <a href="/"><span class="icon">🏠</span> <span class="text">Home</span></a>
+        <a href="/detector"><span class="icon">🔎</span> <span class="text">Detector</span></a>
+        <a href="#about"><span class="icon">ℹ️</span> <span class="text">About</span></a>
+        <a href="#contact"><span class="icon">📧</span> <span class="text">Contact</span></a>
+        <hr style="border: 0.5px solid rgba(255,255,255,0.2); margin: 15px 0;">
+        <a href="#settings"><span class="icon">⚙️</span> <span class="text">Settings</span></a>
+    </div>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="main-container" id="mainContainer">
+        <!-- HEADER -->
+        <header>
+            <h1>🔍 Fake News Detective</h1>
+            <p>AI-Powered Misinformation Detection System</p>
+        </header>
+
+        <!-- WORKSPACE -->
+        <div class="workspace">
+            <div class="editor-container">
+                <!-- ERROR MESSAGE -->
+                <div class="error-box" id="errorBox"></div>
+
+                <!-- FORM SECTION -->
+                <div class="form-section" id="formSection">
+                    <h2>Verify Article Content</h2>
+
+                    <!-- ARTICLE TITLE -->
+                    <div class="form-group">
+                        <label for="articleTitle">Article Title (Optional)</label>
+                        <input type="text" id="articleTitle" placeholder="Enter article title..." maxlength="200">
+                    </div>
+
+                    <!-- TABS -->
+                    <div class="input-tabs">
+                        <button class="tab-btn active" onclick="switchTab('text')">📝 Text Input</button>
+                        <button class="tab-btn" onclick="switchTab('url')">🔗 URL Input</button>
+                    </div>
+
+                    <!-- TEXT TAB -->
+                    <div id="text" class="tab-content active">
+                        <div class="form-group">
+                            <label for="articleText">Article Text *</label>
+                            <textarea id="articleText" placeholder="Paste article text here (minimum 50 characters)..." maxlength="5000"></textarea>
+                            <small class="char-counter"><span id="charCount">0</span>/5000</small>
+                        </div>
+                    </div>
+
+                    <!-- URL TAB -->
+                    <div id="url" class="tab-content">
+                        <div class="form-group">
+                            <label for="articleUrl">Article URL *</label>
+                            <input type="url" id="articleUrl" placeholder="https://example.com/article">
+                        </div>
+                    </div>
+
+                    <!-- ANALYZE BUTTON -->
+                    <button class="analyze-btn" id="analyzeBtn" onclick="analyzeArticle()">
+                        <span id="btnText">🚀 Analyze Article</span>
+                        <span class="loading-spinner" id="spinner"></span>
+                    </button>
+                </div>
+
+                <!-- RESULTS SECTION -->
+                <div class="results-container" id="resultsContainer">
+                    <!-- VERDICT -->
+                    <div class="result-card">
+                        <h3>📊 Analysis Result</h3>
+                        <div id="verdictBadge" class="verdict-badge"></div>
+                        <div style="margin: 15px 0;">
+                            <strong>Verdict:</strong> <span id="verdictLabel" style="color: #667eea; font-size: 1.2em; font-weight: 600;">-</span>
+                        </div>
+                        <div class="confidence-bar">
+                            <strong>Confidence:</strong>
+                            <div class="confidence-bar-bg">
+                                <div id="confidenceFill" class="confidence-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Reasoning:</strong>
+                            <div id="verdictReasoning" class="reasoning-text">-</div>
+                        </div>
+                    </div>
+
+                    <!-- CLAIMS -->
+                    <div class="result-card">
+                        <h3>📋 Claims Detected</h3>
+                        <div id="claimsList"></div>
+                    </div>
+
+                    <!-- EVIDENCE -->
+                    <div class="result-card">
+                        <h3>🔗 Evidence Analysis</h3>
+                        <div id="evidenceList"></div>
+                    </div>
+
+                    <!-- EXPLANATION -->
+                    <div class="result-card">
+                        <h3>💡 AI Explanation</h3>
+                        <div id="llmExplanation" class="explanation-text"></div>
+                    </div>
+
+                    <!-- METADATA -->
+                    <div class="metadata">
+                        <div class="metadata-item">
+                            <div class="metadata-label">⏱️ Time</div>
+                            <div id="analysisTime" class="metadata-value">-</div>
+                        </div>
+                        <div class="metadata-item">
+                            <div class="metadata-label">📝 Claims</div>
+                            <div id="claimsCount" class="metadata-value">0</div>
+                        </div>
+                        <div class="metadata-item">
+                            <div class="metadata-label">🔗 Evidence</div>
+                            <div id="evidenceCount" class="metadata-value">0</div>
+                        </div>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="action-buttons">
+                        <button class="btn-secondary" onclick="newAnalysis()">🔄 New Analysis</button>
+                        <button class="btn-secondary" onclick="downloadReport()">📥 Download Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>Made with ❤️ by Fake News Detection Team • Powered by AI & LLM</footer>
+    </div>
+
+    <!-- LOADING MODAL -->
+    <div class="modal" id="loadingModal">
+        <div class="modal-content">
+            <div class="modal-spinner"></div>
+            <p>Analyzing article...</p>
+            <small>This may take 30-60 seconds</small>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            const mainContainer = document.getElementById('mainContainer');
+            sidebar.classList.toggle('closed');
+            mainContainer.classList.toggle('sidebar-closed');
+        });
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Character count
+        document.getElementById('articleText').addEventListener('input', (e) => {
+            document.getElementById('charCount').textContent = e.target.value.length;
+        });
+
+        // Main analysis function
+        async function analyzeArticle() {
+            const title = document.getElementById('articleTitle').value.trim() || 'Untitled Article';
+            const text = document.getElementById('articleText').value.trim();
+            const url = document.getElementById('articleUrl').value.trim();
+            const activeTab = document.querySelector('.tab-content.active');
+            const isTextTab = activeTab.id === 'text';
+
+            if (isTextTab && (!text || text.length < 50)) {
+                showError('Please enter at least 50 characters');
+                return;
+            }
+            if (!isTextTab && !url) {
+                showError('Please enter a URL');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loadingModal').classList.add('show');
+            document.getElementById('analyzeBtn').disabled = true;
+            document.getElementById('btnText').style.display = 'none';
+            document.getElementById('spinner').style.display = 'inline-block';
+            hideError();
+
+            try {
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title: title,
+                        ...(isTextTab ? { text } : { url })
+                    })
+                });
+
+                if (!response.ok) throw new Error((await response.json()).error);
+                const result = await response.json();
+                displayResults(result);
+            } catch (error) {
+                showError(`Error: ${error.message}`);
+            } finally {
+                document.getElementById('loadingModal').classList.remove('show');
+                document.getElementById('analyzeBtn').disabled = false;
+                document.getElementById('btnText').style.display = 'inline';
+                document.getElementById('spinner').style.display = 'none';
+            }
+        }
+
+        function displayResults(result) {
+            const { verdict, claims, explanations, metadata } = result;
+
+            // Verdict
+            document.getElementById('verdictLabel').textContent = verdict.label;
+            const badge = document.getElementById('verdictBadge');
+            badge.textContent = verdict.label;
+            badge.className = 'verdict-badge ' + (verdict.label.includes('REAL') ? 'badge-real' : verdict.label.includes('FAKE') ? 'badge-fake' : 'badge-mixed');
+
+            // Confidence
+            const conf = Math.round(verdict.confidence * 100);
+            document.getElementById('confidenceFill').style.width = conf + '%';
+            document.getElementById('confidenceFill').textContent = conf + '%';
+
+            // Reasoning
+            document.getElementById('verdictReasoning').textContent = verdict.reasoning;
+
+            // Claims
+            const claimsList = document.getElementById('claimsList');
+            claimsList.innerHTML = claims.length ? claims.map((c, i) => `
+                <div class="claim-item">
+                    <div class="claim-text">${i + 1}. ${c.text}</div>
+                    <div class="claim-meta">🔗 Evidence: ${c.evidence?.length || 0} • 📊 Confidence: ${Math.round(c.confidence * 100)}%</div>
+                </div>
+            `).join('') : '<p style="text-align:center;color:#999;">No claims detected</p>';
+
+            // Evidence
+            const evidenceList = document.getElementById('evidenceList');
+            let evidenceCount = 0;
+            let evidenceHtml = '';
+            claims.forEach(c => {
+                if (!c.evidence) return;
+                c.evidence.forEach(e => {
+                    evidenceCount++;
+                    evidenceHtml += `
+                        <div class="evidence-item">
+                            <div class="evidence-title">${e.title || 'Unknown'}</div>
+                            <div class="evidence-source">📌 ${e.source} • ${e.domain}</div>
+                            <span class="evidence-stance stance-${e.stance.toLowerCase()}">${e.stance}</span>
+                            <span style="margin-left:10px;font-size:0.85em;color:#666;">(${Math.round((e.stance_confidence || 0) * 100)}%)</span>
+                        </div>
+                    `;
+                });
+            });
+            evidenceList.innerHTML = evidenceHtml || '<p style="text-align:center;color:#999;">No evidence found</p>';
+
+            // Explanation
+            let explanation = explanations.llm_explanation || 'No explanation available';
+            explanation = explanation.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            document.getElementById('llmExplanation').innerHTML = explanation;
+
+            // Metadata
+            document.getElementById('analysisTime').textContent = metadata.analysis_duration || '-';
+            document.getElementById('claimsCount').textContent = claims.length;
+            document.getElementById('evidenceCount').textContent = evidenceCount;
+
+            // Show results
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('show');
+        }
+
+        function newAnalysis() {
+            document.getElementById('articleTitle').value = '';
+            document.getElementById('articleText').value = '';
+            document.getElementById('articleUrl').value = '';
+            document.getElementById('charCount').textContent = '0';
+            document.getElementById('formSection').style.display = 'block';
+            document.getElementById('resultsContainer').classList.remove('show');
+            hideError();
+        }
+
+        function downloadReport() {
+            const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Report</title><style>body{font-family:Poppins,Arial;margin:2rem;line-height:1.6}h1{color:#667eea}.section{background:#f8f9fa;padding:1.5rem;border-radius:8px;margin:1rem 0}</style></head><body><div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:2rem;border-radius:12px;text-align:center"><h1>Fake News Analysis Report</h1><p>${new Date().toLocaleString()}</p></div><div class="section"><h2>Verdict: ${document.getElementById('verdictLabel').textContent}</h2><p><strong>Confidence:</strong> ${document.getElementById('confidenceFill').textContent}</p><p><strong>Reasoning:</strong> ${document.getElementById('verdictReasoning').textContent}</p></div></body></html>`;
+            const blob = new Blob([html], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `fake_news_report_${Date.now()}.html`;
+            a.click();
+        }
+
+        function showError(msg) {
+            const errorBox = document.getElementById('errorBox');
+            errorBox.textContent = msg;
+            errorBox.classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('errorBox').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

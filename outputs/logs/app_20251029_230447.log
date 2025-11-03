@@ -1,0 +1,989 @@
+2025-10-29 23:04:47.102 | INFO     | __main__:<module>:44 - Flask application initialized
+2025-10-29 23:04:47.102 | INFO     | __main__:startup:50 - 
+================================================================================
+2025-10-29 23:04:47.102 | INFO     | __main__:startup:51 - FAKE NEWS DETECTION SYSTEM - DEPLOYMENT
+2025-10-29 23:04:47.102 | INFO     | __main__:startup:52 - ================================================================================
+2025-10-29 23:04:47.102 | INFO     | __main__:startup:59 - ✓ Directories created
+2025-10-29 23:04:47.102 | INFO     | __main__:startup:60 - ✓ Flask app ready
+2025-10-29 23:04:47.102 | INFO     | __main__:startup:61 - ================================================================================
+
+2025-10-29 23:04:52.421 | INFO     | __main__:analyze:84 - 
+================================================================================
+2025-10-29 23:04:52.421 | INFO     | __main__:analyze:85 - NEW ANALYSIS REQUEST
+2025-10-29 23:04:52.421 | INFO     | __main__:analyze:86 - ================================================================================
+2025-10-29 23:04:52.422 | INFO     | __main__:analyze:103 - ✓ Request validated: Text | Title: Untitled Article
+2025-10-29 23:04:52.423 | INFO     | __main__:analyze:104 - → Starting workflow...
+2025-10-29 23:04:52.423 | INFO     | src.orchestration.workflow:run_workflow:178 - 
+================================================================================
+2025-10-29 23:04:52.424 | INFO     | src.orchestration.workflow:run_workflow:179 - STARTING FAKE NEWS DETECTION WORKFLOW
+2025-10-29 23:04:52.424 | INFO     | src.orchestration.workflow:run_workflow:180 - ================================================================================
+2025-10-29 23:04:52.425 | INFO     | src.orchestration.workflow:run_workflow:192 - Initial state created
+2025-10-29 23:04:52.425 | INFO     | src.orchestration.workflow:run_workflow:193 -   URL: None
+2025-10-29 23:04:52.426 | INFO     | src.orchestration.workflow:run_workflow:194 -   Text length: 2257 chars
+2025-10-29 23:04:52.426 | INFO     | src.orchestration.workflow:run_workflow:195 -   Title: Untitled Article
+2025-10-29 23:04:52.427 | INFO     | src.orchestration.workflow:build_workflow:78 - ============================================================
+2025-10-29 23:04:52.427 | INFO     | src.orchestration.workflow:build_workflow:79 - BUILDING LANGGRAPH WORKFLOW
+2025-10-29 23:04:52.427 | INFO     | src.orchestration.workflow:build_workflow:80 - ============================================================
+2025-10-29 23:04:52.428 | INFO     | src.orchestration.workflow:build_workflow:86 - Adding nodes...
+2025-10-29 23:04:52.429 | INFO     | src.orchestration.workflow:build_workflow:97 - ✓ 8 nodes added
+2025-10-29 23:04:52.429 | INFO     | src.orchestration.workflow:build_workflow:100 - Setting entry point...
+2025-10-29 23:04:52.430 | INFO     | src.orchestration.workflow:build_workflow:102 - ✓ Entry point: ingest
+2025-10-29 23:04:52.430 | INFO     | src.orchestration.workflow:build_workflow:105 - Adding conditional edges...
+2025-10-29 23:04:52.430 | INFO     | src.orchestration.workflow:build_workflow:115 -   ✓ ingest → [claim_detection | error_handler]
+2025-10-29 23:04:52.431 | INFO     | src.orchestration.workflow:build_workflow:126 -   ✓ claim_detection → [embedding | explainability | error_handler]
+2025-10-29 23:04:52.431 | INFO     | src.orchestration.workflow:build_workflow:136 -   ✓ evidence_retrieval → [stance_classification | error_handler]
+2025-10-29 23:04:52.432 | INFO     | src.orchestration.workflow:build_workflow:139 - Adding linear edges...
+2025-10-29 23:04:52.432 | INFO     | src.orchestration.workflow:build_workflow:142 -   ✓ embedding → evidence_retrieval
+2025-10-29 23:04:52.433 | INFO     | src.orchestration.workflow:build_workflow:145 -   ✓ stance_classification → aggregation
+2025-10-29 23:04:52.433 | INFO     | src.orchestration.workflow:build_workflow:148 -   ✓ aggregation → explainability
+2025-10-29 23:04:52.433 | INFO     | src.orchestration.workflow:build_workflow:151 -   ✓ explainability → END
+2025-10-29 23:04:52.434 | INFO     | src.orchestration.workflow:build_workflow:154 -   ✓ error_handler → END
+2025-10-29 23:04:52.434 | INFO     | src.orchestration.workflow:build_workflow:157 - Compiling workflow...
+2025-10-29 23:04:52.471 | INFO     | src.orchestration.workflow:build_workflow:160 - ============================================================
+2025-10-29 23:04:52.471 | INFO     | src.orchestration.workflow:build_workflow:161 - ✓ WORKFLOW COMPILED SUCCESSFULLY
+2025-10-29 23:04:52.471 | INFO     | src.orchestration.workflow:build_workflow:162 - ============================================================
+2025-10-29 23:04:52.471 | INFO     | src.orchestration.workflow:run_workflow:199 - 
+Executing workflow...
+2025-10-29 23:04:52.529 | INFO     | src.orchestration.nodes:ingest_node:61 - ============================================================
+2025-10-29 23:04:52.531 | INFO     | src.orchestration.nodes:ingest_node:62 - NODE 1: INGEST - Parsing article...
+2025-10-29 23:04:52.532 | INFO     | src.orchestration.nodes:ingest_node:63 - ============================================================
+2025-10-29 23:04:52.532 | INFO     | src.orchestration.nodes:_get_agents:39 - Initializing agents (first run)...
+2025-10-29 23:04:53.324 | INFO     | src.agents.ingest_agent:__init__:22 - Loaded spaCy model: en_core_web_sm
+2025-10-29 23:04:54.001 | INFO     | src.agents.claim_detection_agent:__init__:22 - Claim detection agent initialized
+2025-10-29 23:04:54.004 | INFO     | src.agents.claim_embedding_agent:__init__:19 - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2025-10-29 23:04:57.994 | INFO     | src.agents.claim_embedding_agent:__init__:24 - Embedding model loaded successfully
+2025-10-29 23:04:57.995 | INFO     | src.agents.evidence_retrieval_agent:__init__:34 - Loaded 10 RSS feeds
+2025-10-29 23:04:57.996 | INFO     | src.agents.aggregation_agent:__init__:23 - Aggregation agent initialized
+2025-10-29 23:04:58.402 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 23:04:58.904 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 23:04:58.904 | INFO     | src.agents.explainability_agent:__init__:31 - Multi-Method Explainability Agent initialized
+2025-10-29 23:04:58.904 | INFO     | src.orchestration.nodes:_get_agents:48 - All agents initialized
+2025-10-29 23:04:58.904 | INFO     | src.agents.ingest_agent:process_text:94 - Processing raw text input
+2025-10-29 23:04:59.049 | INFO     | src.agents.ingest_agent:process_text:114 - Successfully processed text: 11 sentences
+2025-10-29 23:04:59.049 | INFO     | src.utils:__exit__:120 - ✓ Article ingestion completed in 0.14s
+2025-10-29 23:04:59.049 | INFO     | src.orchestration.nodes:ingest_node:80 - ✓ Article ingested: Untitled Article
+2025-10-29 23:04:59.049 | INFO     | src.orchestration.nodes:ingest_node:81 -   Sentences: 11, Words: 302
+2025-10-29 23:04:59.064 | INFO     | src.orchestration.nodes:claim_detection_node:98 - ============================================================
+2025-10-29 23:04:59.064 | INFO     | src.orchestration.nodes:claim_detection_node:99 - NODE 2: CLAIM DETECTION - Extracting claims...
+2025-10-29 23:04:59.064 | INFO     | src.orchestration.nodes:claim_detection_node:100 - ============================================================
+2025-10-29 23:04:59.073 | INFO     | src.agents.claim_detection_agent:extract_claims:54 - Extracting claims from 11 sentences
+2025-10-29 23:04:59.273 | INFO     | src.agents.claim_detection_agent:extract_claims:84 - Extracted 3 claims from 11 sentences
+2025-10-29 23:04:59.273 | INFO     | src.utils:__exit__:120 - ✓ Claim detection completed in 0.20s
+2025-10-29 23:04:59.273 | INFO     | src.orchestration.nodes:claim_detection_node:112 - ✓ Claims extracted: 3 claims found
+2025-10-29 23:04:59.273 | INFO     | src.orchestration.nodes:claim_detection_node:115 - Sample claims:
+2025-10-29 23:04:59.273 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   1. According to anonymous sources working inside pharmaceutical manufacturing facil... (confidence: 0.50)
+2025-10-29 23:04:59.273 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   2. Whistleblowers claim that this global conspiracy involves the collaboration of t... (confidence: 0.45)
+2025-10-29 23:04:59.273 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   3. Former physician Dr. James Wilson, who claims to have worked in vaccine developm... (confidence: 0.45)
+2025-10-29 23:04:59.289 | INFO     | src.orchestration.nodes:embedding_node:134 - ============================================================
+2025-10-29 23:04:59.289 | INFO     | src.orchestration.nodes:embedding_node:135 - NODE 3: EMBEDDING - Generating claim embeddings...
+2025-10-29 23:04:59.289 | INFO     | src.orchestration.nodes:embedding_node:136 - ============================================================
+2025-10-29 23:04:59.289 | INFO     | src.agents.claim_embedding_agent:embed_claims:45 - Generating embeddings for 3 claims
+2025-10-29 23:04:59.503 | INFO     | src.agents.claim_embedding_agent:embed_claims:63 - Successfully embedded 3 claims
+2025-10-29 23:04:59.506 | INFO     | src.utils:__exit__:120 - ✓ Embedding generation completed in 0.22s
+2025-10-29 23:04:59.506 | INFO     | src.orchestration.nodes:embedding_node:150 - ✓ Embeddings generated for 3 claims
+2025-10-29 23:04:59.533 | INFO     | src.orchestration.nodes:evidence_retrieval_node:168 - ============================================================
+2025-10-29 23:04:59.534 | INFO     | src.orchestration.nodes:evidence_retrieval_node:169 - NODE 4: EVIDENCE RETRIEVAL - Searching for evidence...
+2025-10-29 23:04:59.534 | INFO     | src.orchestration.nodes:evidence_retrieval_node:170 - ============================================================
+2025-10-29 23:04:59.534 | INFO     | src.agents.evidence_retrieval_agent:retrieve_evidence:67 - Retrieving evidence for 3 claims
+2025-10-29 23:04:59.534 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:04:59.538 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:04:59.538 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:04:59.540 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:04:59.540 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:04:59.540 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:00.217 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): According to anonymous sources working inside phar completed in 0.68s
+2025-10-29 23:05:00.549 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): According to anonymous sources working inside phar completed in 0.33s
+2025-10-29 23:05:00.849 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): According to anonymous sources working inside phar completed in 0.30s
+2025-10-29 23:05:01.167 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): According to anonymous completed in 0.32s
+2025-10-29 23:05:01.169 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:05:01.169 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:02.022 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: According to anonymous sources working inside phar
+2025-10-29 23:05:02.022 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: According to anonymous sources working inside phar completed in 0.85s
+2025-10-29 23:05:02.792 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:05:03.796 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:03.796 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:03.796 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:03.798 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:03.798 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:03.798 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:04.437 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): anonymous sources working inside pharmaceutical completed in 0.64s
+2025-10-29 23:05:04.982 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): anonymous sources working inside pharmaceutical completed in 0.54s
+2025-10-29 23:05:05.235 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): anonymous sources working inside pharmaceutical completed in 0.25s
+2025-10-29 23:05:05.671 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): anonymous sources working completed in 0.44s
+2025-10-29 23:05:05.673 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:05:05.675 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:06.360 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: anonymous sources working inside pharmaceutical
+2025-10-29 23:05:06.360 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: anonymous sources working inside pharmaceutical completed in 0.68s
+2025-10-29 23:05:07.395 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 23:05:07.397 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 23:05:08.399 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:08.399 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:08.399 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:08.399 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:08.400 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:08.400 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:09.095 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): According to anonymous sources completed in 0.69s
+2025-10-29 23:05:09.438 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): According to anonymous sources completed in 0.34s
+2025-10-29 23:05:09.815 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): According to anonymous sources completed in 0.38s
+2025-10-29 23:05:10.152 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): According to anonymous completed in 0.34s
+2025-10-29 23:05:10.152 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:05:10.153 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:10.876 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: According to anonymous sources
+2025-10-29 23:05:10.877 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: According to anonymous sources completed in 0.72s
+2025-10-29 23:05:11.106 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:05:12.107 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:05:12.107 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 23:05:12.107 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:05:12.108 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:05:12.108 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 2
+2025-10-29 23:05:12.108 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 2
+2025-10-29 23:05:12.109 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: According to anonymous sources working inside phar... completed in 12.58s
+2025-10-29 23:05:12.109 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:12.110 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:12.110 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:12.110 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:12.110 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:12.111 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:12.906 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Whistleblowers claim that this global conspiracy i completed in 0.79s
+2025-10-29 23:05:13.298 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Whistleblowers claim that this global conspiracy i completed in 0.39s
+2025-10-29 23:05:13.633 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Whistleblowers claim that this global conspiracy i completed in 0.33s
+2025-10-29 23:05:13.975 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 4)
+2025-10-29 23:05:13.975 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Whistleblowers claim that completed in 0.34s
+2025-10-29 23:05:13.975 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:05:13.975 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:14.868 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Whistleblowers claim that this global conspiracy i
+2025-10-29 23:05:14.868 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Whistleblowers claim that this global conspiracy i completed in 0.89s
+2025-10-29 23:05:17.220 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:17.220 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:17.222 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:17.222 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:17.222 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:17.222 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:18.086 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 1)
+2025-10-29 23:05:18.086 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): the World Health Organization completed in 0.86s
+2025-10-29 23:05:18.086 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:05:18.086 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:173 - Good results from Google FC, moving forward
+2025-10-29 23:05:18.086 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:05:18.086 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 4
+2025-10-29 23:05:18.086 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:05:18.086 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:05:18.101 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:05:18.101 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 4
+2025-10-29 23:05:18.101 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Whistleblowers claim that this global conspiracy i... completed in 5.99s
+2025-10-29 23:05:18.112 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:18.114 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:18.114 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:18.114 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:18.114 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:18.120 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:18.956 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Former physician Dr. James Wilson, who claims to h completed in 0.83s
+2025-10-29 23:05:19.280 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Former physician Dr. James Wilson, who claims to h completed in 0.32s
+2025-10-29 23:05:19.613 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Former physician Dr. James Wilson, who claims to h completed in 0.33s
+2025-10-29 23:05:19.962 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Former physician Dr. completed in 0.35s
+2025-10-29 23:05:19.962 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:05:19.962 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:20.882 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Former physician Dr. James Wilson, who claims to h
+2025-10-29 23:05:20.883 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Former physician Dr. James Wilson, who claims to h completed in 0.92s
+2025-10-29 23:05:21.826 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:05:22.832 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:22.834 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:22.834 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:22.834 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:22.836 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:22.836 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:23.730 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): James Wilson completed in 0.88s
+2025-10-29 23:05:24.001 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): James Wilson completed in 0.27s
+2025-10-29 23:05:24.386 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): James Wilson completed in 0.38s
+2025-10-29 23:05:24.656 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): James Wilson completed in 0.27s
+2025-10-29 23:05:24.658 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:05:24.658 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:25.560 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: James Wilson
+2025-10-29 23:05:25.560 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: James Wilson completed in 0.90s
+2025-10-29 23:05:37.690 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-10-29 23:05:38.694 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:38.694 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:38.694 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:38.694 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:38.694 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:38.694 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:39.366 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): former physician dr. james wilson, completed in 0.67s
+2025-10-29 23:05:39.645 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): former physician dr. james wilson, completed in 0.28s
+2025-10-29 23:05:39.950 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): former physician dr. james wilson, completed in 0.31s
+2025-10-29 23:05:40.277 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): former physician dr. completed in 0.33s
+2025-10-29 23:05:40.277 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:05:40.279 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:41.229 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: former physician dr. james wilson,
+2025-10-29 23:05:41.229 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: former physician dr. james wilson, completed in 0.95s
+2025-10-29 23:05:41.459 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:05:42.467 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:05:42.468 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:05:42.468 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:05:42.468 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:05:42.471 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:05:42.471 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:05:43.131 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Former physician Dr. James completed in 0.66s
+2025-10-29 23:05:43.456 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Former physician Dr. James completed in 0.32s
+2025-10-29 23:05:43.729 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Former physician Dr. James completed in 0.26s
+2025-10-29 23:05:44.160 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Former physician Dr. completed in 0.43s
+2025-10-29 23:05:44.161 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:05:44.163 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:05:44.868 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Former physician Dr. James
+2025-10-29 23:05:44.868 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Former physician Dr. James completed in 0.70s
+2025-10-29 23:05:45.084 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:05:46.096 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:05:46.096 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 23:05:46.108 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:05:46.109 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:05:46.110 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:05:46.110 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 0
+2025-10-29 23:05:46.111 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Former physician Dr. James Wilson, who claims to h... completed in 28.00s
+2025-10-29 23:05:46.111 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval completed in 46.58s
+2025-10-29 23:05:46.111 | INFO     | src.orchestration.nodes:evidence_retrieval_node:187 - ✓ Evidence retrieved: 6 items across 3 claims
+2025-10-29 23:05:46.111 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - According to anonymous sources working inside pharmaceutical...: 2 evidence items
+2025-10-29 23:05:46.113 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Whistleblowers claim that this global conspiracy involves th...: 4 evidence items
+2025-10-29 23:05:46.114 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Former physician Dr. James Wilson, who claims to have worked...: 0 evidence items
+2025-10-29 23:05:46.136 | INFO     | src.orchestration.nodes:stance_classification_node:204 - ============================================================
+2025-10-29 23:05:46.136 | INFO     | src.orchestration.nodes:stance_classification_node:205 - NODE 5: STANCE CLASSIFICATION
+2025-10-29 23:05:46.138 | INFO     | src.orchestration.nodes:stance_classification_node:206 - ============================================================
+2025-10-29 23:05:46.318 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 23:05:46.712 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 23:05:46.713 | INFO     | src.agents.llm_stance_agent:__init__:22 - LLM Stance Classifier (Groq) initialized
+2025-10-29 23:05:46.714 | INFO     | src.orchestration.nodes:stance_classification_node:214 - Classifying stance for evidence items
+2025-10-29 23:05:46.714 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:34 - Classifying stance with Groq LLM for all evidence
+2025-10-29 23:05:49.351 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:94 - Stance classification complete: ✓6 | ✗0 | ⊘0
+2025-10-29 23:05:49.352 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:105 - Stance distribution: {'SUPPORTS': 0, 'REFUTES': 2, 'NEUTRAL': 4}
+2025-10-29 23:05:49.352 | INFO     | src.orchestration.nodes:stance_classification_node:221 - ✓ Stance classification complete
+2025-10-29 23:05:49.352 | INFO     | src.orchestration.nodes:stance_classification_node:222 - ============================================================
+2025-10-29 23:05:49.365 | INFO     | src.orchestration.nodes:aggregation_node:258 - ============================================================
+2025-10-29 23:05:49.365 | INFO     | src.orchestration.nodes:aggregation_node:259 - NODE 6: AGGREGATION - Generating verdicts...
+2025-10-29 23:05:49.365 | INFO     | src.orchestration.nodes:aggregation_node:260 - ============================================================
+2025-10-29 23:05:49.554 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 23:05:49.916 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 23:05:49.917 | INFO     | src.agents.verdict_agent:__init__:16 - Verdict Agent initialized
+2025-10-29 23:05:50.205 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:05:50.205 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: According to anonymous sources working inside pharmaceutical...
+2025-10-29 23:05:50.205 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:05:50.205 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:05:50.572 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (60%)
+2025-10-29 23:05:50.573 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Whistleblowers claim that this global conspiracy involves th...
+2025-10-29 23:05:50.573 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:05:50.573 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 60%
+2025-10-29 23:05:50.574 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Former physician Dr. James Wilson, who claims to have worked...
+2025-10-29 23:05:50.574 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: INCONCLUSIVE
+2025-10-29 23:05:50.574 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 0%
+2025-10-29 23:05:50.574 | INFO     | src.orchestration.nodes:aggregation_node:293 - ✓ Article Verdict: LIKELY_REAL
+2025-10-29 23:05:50.574 | INFO     | src.orchestration.nodes:aggregation_node:294 -   Confidence: 47%
+2025-10-29 23:05:50.575 | INFO     | src.orchestration.nodes:aggregation_node:295 - ============================================================
+2025-10-29 23:05:50.587 | INFO     | src.orchestration.nodes:explainability_node:308 - ============================================================
+2025-10-29 23:05:50.588 | INFO     | src.orchestration.nodes:explainability_node:309 - NODE 7: EXPLAINABILITY - Generating explanations...
+2025-10-29 23:05:50.589 | INFO     | src.orchestration.nodes:explainability_node:310 - ============================================================
+2025-10-29 23:05:50.750 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 23:05:51.150 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 23:05:51.150 | INFO     | src.agents.explainability_agent:__init__:31 - Multi-Method Explainability Agent initialized
+2025-10-29 23:05:51.150 | INFO     | src.orchestration.nodes:explainability_node:324 - ✓ Explanations generated
+2025-10-29 23:05:51.150 | INFO     | src.orchestration.nodes:explainability_node:325 - ============================================================
+2025-10-29 23:05:51.159 | INFO     | src.orchestration.workflow:run_workflow:202 - 
+================================================================================
+2025-10-29 23:05:51.159 | INFO     | src.orchestration.workflow:run_workflow:203 - WORKFLOW COMPLETED
+2025-10-29 23:05:51.159 | INFO     | src.orchestration.workflow:run_workflow:204 - ================================================================================
+2025-10-29 23:05:51.159 | INFO     | src.orchestration.workflow:run_workflow:227 - Final verdict: LIKELY_REAL
+2025-10-29 23:05:51.159 | INFO     | __main__:analyze:135 - ✓ Analysis complete: LIKELY_REAL (47%)
+2025-10-29 23:05:51.159 | INFO     | __main__:analyze:136 - ================================================================================
+
+2025-10-29 23:08:10.868 | INFO     | __main__:analyze:84 - 
+================================================================================
+2025-10-29 23:08:10.869 | INFO     | __main__:analyze:85 - NEW ANALYSIS REQUEST
+2025-10-29 23:08:10.869 | INFO     | __main__:analyze:86 - ================================================================================
+2025-10-29 23:08:10.869 | INFO     | __main__:analyze:103 - ✓ Request validated: Text | Title: Untitled Article
+2025-10-29 23:08:10.870 | INFO     | __main__:analyze:104 - → Starting workflow...
+2025-10-29 23:08:10.870 | INFO     | src.orchestration.workflow:run_workflow:178 - 
+================================================================================
+2025-10-29 23:08:10.870 | INFO     | src.orchestration.workflow:run_workflow:179 - STARTING FAKE NEWS DETECTION WORKFLOW
+2025-10-29 23:08:10.871 | INFO     | src.orchestration.workflow:run_workflow:180 - ================================================================================
+2025-10-29 23:08:10.871 | INFO     | src.orchestration.workflow:run_workflow:192 - Initial state created
+2025-10-29 23:08:10.871 | INFO     | src.orchestration.workflow:run_workflow:193 -   URL: None
+2025-10-29 23:08:10.871 | INFO     | src.orchestration.workflow:run_workflow:194 -   Text length: 2310 chars
+2025-10-29 23:08:10.871 | INFO     | src.orchestration.workflow:run_workflow:195 -   Title: Untitled Article
+2025-10-29 23:08:10.872 | INFO     | src.orchestration.workflow:build_workflow:78 - ============================================================
+2025-10-29 23:08:10.872 | INFO     | src.orchestration.workflow:build_workflow:79 - BUILDING LANGGRAPH WORKFLOW
+2025-10-29 23:08:10.872 | INFO     | src.orchestration.workflow:build_workflow:80 - ============================================================
+2025-10-29 23:08:10.872 | INFO     | src.orchestration.workflow:build_workflow:86 - Adding nodes...
+2025-10-29 23:08:10.873 | INFO     | src.orchestration.workflow:build_workflow:97 - ✓ 8 nodes added
+2025-10-29 23:08:10.873 | INFO     | src.orchestration.workflow:build_workflow:100 - Setting entry point...
+2025-10-29 23:08:10.873 | INFO     | src.orchestration.workflow:build_workflow:102 - ✓ Entry point: ingest
+2025-10-29 23:08:10.873 | INFO     | src.orchestration.workflow:build_workflow:105 - Adding conditional edges...
+2025-10-29 23:08:10.873 | INFO     | src.orchestration.workflow:build_workflow:115 -   ✓ ingest → [claim_detection | error_handler]
+2025-10-29 23:08:10.874 | INFO     | src.orchestration.workflow:build_workflow:126 -   ✓ claim_detection → [embedding | explainability | error_handler]
+2025-10-29 23:08:10.874 | INFO     | src.orchestration.workflow:build_workflow:136 -   ✓ evidence_retrieval → [stance_classification | error_handler]
+2025-10-29 23:08:10.874 | INFO     | src.orchestration.workflow:build_workflow:139 - Adding linear edges...
+2025-10-29 23:08:10.874 | INFO     | src.orchestration.workflow:build_workflow:142 -   ✓ embedding → evidence_retrieval
+2025-10-29 23:08:10.875 | INFO     | src.orchestration.workflow:build_workflow:145 -   ✓ stance_classification → aggregation
+2025-10-29 23:08:10.875 | INFO     | src.orchestration.workflow:build_workflow:148 -   ✓ aggregation → explainability
+2025-10-29 23:08:10.875 | INFO     | src.orchestration.workflow:build_workflow:151 -   ✓ explainability → END
+2025-10-29 23:08:10.875 | INFO     | src.orchestration.workflow:build_workflow:154 -   ✓ error_handler → END
+2025-10-29 23:08:10.875 | INFO     | src.orchestration.workflow:build_workflow:157 - Compiling workflow...
+2025-10-29 23:08:10.888 | INFO     | src.orchestration.workflow:build_workflow:160 - ============================================================
+2025-10-29 23:08:10.888 | INFO     | src.orchestration.workflow:build_workflow:161 - ✓ WORKFLOW COMPILED SUCCESSFULLY
+2025-10-29 23:08:10.893 | INFO     | src.orchestration.workflow:build_workflow:162 - ============================================================
+2025-10-29 23:08:10.893 | INFO     | src.orchestration.workflow:run_workflow:199 - 
+Executing workflow...
+2025-10-29 23:08:10.929 | INFO     | src.orchestration.nodes:ingest_node:61 - ============================================================
+2025-10-29 23:08:10.929 | INFO     | src.orchestration.nodes:ingest_node:62 - NODE 1: INGEST - Parsing article...
+2025-10-29 23:08:10.929 | INFO     | src.orchestration.nodes:ingest_node:63 - ============================================================
+2025-10-29 23:08:10.929 | INFO     | src.agents.ingest_agent:process_text:94 - Processing raw text input
+2025-10-29 23:08:11.082 | INFO     | src.agents.ingest_agent:process_text:114 - Successfully processed text: 13 sentences
+2025-10-29 23:08:11.083 | INFO     | src.utils:__exit__:120 - ✓ Article ingestion completed in 0.15s
+2025-10-29 23:08:11.083 | INFO     | src.orchestration.nodes:ingest_node:80 - ✓ Article ingested: Untitled Article
+2025-10-29 23:08:11.083 | INFO     | src.orchestration.nodes:ingest_node:81 -   Sentences: 13, Words: 326
+2025-10-29 23:08:11.095 | INFO     | src.orchestration.nodes:claim_detection_node:98 - ============================================================
+2025-10-29 23:08:11.095 | INFO     | src.orchestration.nodes:claim_detection_node:99 - NODE 2: CLAIM DETECTION - Extracting claims...
+2025-10-29 23:08:11.095 | INFO     | src.orchestration.nodes:claim_detection_node:100 - ============================================================
+2025-10-29 23:08:11.095 | INFO     | src.agents.claim_detection_agent:extract_claims:54 - Extracting claims from 13 sentences
+2025-10-29 23:08:11.351 | INFO     | src.agents.claim_detection_agent:extract_claims:84 - Extracted 10 claims from 13 sentences
+2025-10-29 23:08:11.351 | INFO     | src.utils:__exit__:120 - ✓ Claim detection completed in 0.26s
+2025-10-29 23:08:11.351 | INFO     | src.orchestration.nodes:claim_detection_node:112 - ✓ Claims extracted: 10 claims found
+2025-10-29 23:08:11.351 | INFO     | src.orchestration.nodes:claim_detection_node:115 - Sample claims:
+2025-10-29 23:08:11.351 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   1. Climate change is causing sea levels to rise globally, according to multiple stu... (confidence: 0.65)
+2025-10-29 23:08:11.352 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   2. The primary driver of this phenomenon is thermal expansion of seawater as oceans... (confidence: 0.45)
+2025-10-29 23:08:11.352 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   3. Satellite data collected over the past three decades shows that global sea level... (confidence: 0.50)
+2025-10-29 23:08:11.369 | INFO     | src.orchestration.nodes:embedding_node:134 - ============================================================
+2025-10-29 23:08:11.369 | INFO     | src.orchestration.nodes:embedding_node:135 - NODE 3: EMBEDDING - Generating claim embeddings...
+2025-10-29 23:08:11.369 | INFO     | src.orchestration.nodes:embedding_node:136 - ============================================================
+2025-10-29 23:08:11.370 | INFO     | src.agents.claim_embedding_agent:embed_claims:45 - Generating embeddings for 10 claims
+2025-10-29 23:08:11.518 | INFO     | src.agents.claim_embedding_agent:embed_claims:63 - Successfully embedded 10 claims
+2025-10-29 23:08:11.518 | INFO     | src.utils:__exit__:120 - ✓ Embedding generation completed in 0.15s
+2025-10-29 23:08:11.518 | INFO     | src.orchestration.nodes:embedding_node:150 - ✓ Embeddings generated for 10 claims
+2025-10-29 23:08:11.563 | INFO     | src.orchestration.nodes:evidence_retrieval_node:168 - ============================================================
+2025-10-29 23:08:11.564 | INFO     | src.orchestration.nodes:evidence_retrieval_node:169 - NODE 4: EVIDENCE RETRIEVAL - Searching for evidence...
+2025-10-29 23:08:11.564 | INFO     | src.orchestration.nodes:evidence_retrieval_node:170 - ============================================================
+2025-10-29 23:08:11.564 | INFO     | src.agents.evidence_retrieval_agent:retrieve_evidence:67 - Retrieving evidence for 10 claims
+2025-10-29 23:08:11.564 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:11.565 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:11.565 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:11.565 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:11.566 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:11.566 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:12.595 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 2 fact-checked claims (attempt 1)
+2025-10-29 23:08:12.596 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Climate change is causing sea levels to rise globa completed in 1.03s
+2025-10-29 23:08:12.597 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 2 results
+2025-10-29 23:08:12.597 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:14.343 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Climate change is causing sea levels to rise globa
+2025-10-29 23:08:14.343 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Climate change is causing sea levels to rise globa completed in 1.74s
+2025-10-29 23:08:15.368 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:08:16.371 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:16.371 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:16.372 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:16.372 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:16.372 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:16.372 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:17.380 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 2 fact-checked claims (attempt 1)
+2025-10-29 23:08:17.380 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): the National Oceanic and Atmospheric Administratio completed in 1.01s
+2025-10-29 23:08:17.380 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 2 results
+2025-10-29 23:08:17.380 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:18.677 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: the National Oceanic and Atmospheric Administratio
+2025-10-29 23:08:18.677 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: the National Oceanic and Atmospheric Administratio completed in 1.30s
+2025-10-29 23:08:19.679 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:19.679 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:19.679 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:19.680 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:19.680 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:19.680 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:20.640 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 1)
+2025-10-29 23:08:20.640 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): climate change causing sea levels completed in 0.96s
+2025-10-29 23:08:20.641 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:08:20.641 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:173 - Good results from Google FC, moving forward
+2025-10-29 23:08:20.642 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:08:20.643 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 7
+2025-10-29 23:08:20.643 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:08:20.644 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:08:20.644 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:08:20.663 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 7
+2025-10-29 23:08:20.666 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Climate change is causing sea levels to rise globa... completed in 9.10s
+2025-10-29 23:08:20.667 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:20.668 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:20.669 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:20.670 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:20.670 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:20.671 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:21.455 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): The primary driver of this phenomenon is thermal e completed in 0.78s
+2025-10-29 23:08:21.743 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): The primary driver of this phenomenon is thermal e completed in 0.29s
+2025-10-29 23:08:22.056 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): The primary driver of this phenomenon is thermal e completed in 0.31s
+2025-10-29 23:08:22.564 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): The primary driver completed in 0.51s
+2025-10-29 23:08:22.565 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:08:22.565 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:23.821 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: The primary driver of this phenomenon is thermal e
+2025-10-29 23:08:23.821 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: The primary driver of this phenomenon is thermal e completed in 1.25s
+2025-10-29 23:08:24.788 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:08:25.791 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:25.793 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:25.794 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:25.795 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:25.796 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:25.796 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:26.649 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 1)
+2025-10-29 23:08:26.650 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Greenland completed in 0.85s
+2025-10-29 23:08:26.650 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:08:26.650 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:28.000 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Greenland
+2025-10-29 23:08:28.001 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Greenland completed in 1.35s
+2025-10-29 23:08:29.002 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:29.002 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:29.002 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:29.002 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:29.002 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:29.009 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:29.794 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): primary driver phenomenon thermal expansion completed in 0.77s
+2025-10-29 23:08:30.049 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): primary driver phenomenon thermal expansion completed in 0.25s
+2025-10-29 23:08:30.354 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): primary driver phenomenon thermal expansion completed in 0.30s
+2025-10-29 23:08:30.692 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 1 fact-checked claims (attempt 4)
+2025-10-29 23:08:30.694 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): primary driver phenomenon completed in 0.34s
+2025-10-29 23:08:30.694 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 1 results
+2025-10-29 23:08:30.694 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:32.099 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: primary driver phenomenon thermal expansion
+2025-10-29 23:08:32.099 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: primary driver phenomenon thermal expansion completed in 1.40s
+2025-10-29 23:08:33.102 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:33.102 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:33.102 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:33.102 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:33.102 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:33.102 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:34.080 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): The primary driver of completed in 0.98s
+2025-10-29 23:08:34.416 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): The primary driver of completed in 0.33s
+2025-10-29 23:08:34.765 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): The primary driver of completed in 0.34s
+2025-10-29 23:08:35.055 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): The primary driver completed in 0.29s
+2025-10-29 23:08:35.055 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:08:35.055 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:36.534 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: The primary driver of
+2025-10-29 23:08:36.534 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: The primary driver of completed in 1.48s
+2025-10-29 23:08:37.535 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:08:37.535 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 4
+2025-10-29 23:08:37.538 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:08:37.541 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:08:37.541 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:08:37.548 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 4
+2025-10-29 23:08:37.549 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: The primary driver of this phenomenon is thermal e... completed in 16.88s
+2025-10-29 23:08:37.549 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:37.549 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:37.556 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:37.556 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:37.586 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:37.586 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:38.457 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Satellite data collected over the past three decad completed in 0.87s
+2025-10-29 23:08:38.726 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Satellite data collected over the past three decad completed in 0.27s
+2025-10-29 23:08:39.027 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Satellite data collected over the past three decad completed in 0.30s
+2025-10-29 23:08:39.448 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 4)
+2025-10-29 23:08:39.450 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Satellite data collected completed in 0.42s
+2025-10-29 23:08:39.450 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:08:39.452 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:40.772 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Satellite data collected over the past three decad
+2025-10-29 23:08:40.772 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Satellite data collected over the past three decad completed in 1.32s
+2025-10-29 23:08:41.773 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:41.773 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:41.773 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:41.776 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:41.776 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:41.776 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:42.743 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 1 fact-checked claims (attempt 1)
+2025-10-29 23:08:42.744 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): satellite data collected over past completed in 0.97s
+2025-10-29 23:08:42.744 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 1 results
+2025-10-29 23:08:42.746 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:44.005 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: satellite data collected over past
+2025-10-29 23:08:44.005 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: satellite data collected over past completed in 1.26s
+2025-10-29 23:08:45.007 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:45.011 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:45.011 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:45.014 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:45.014 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:45.029 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:45.916 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 2 fact-checked claims (attempt 1)
+2025-10-29 23:08:45.918 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Satellite data collected over completed in 0.89s
+2025-10-29 23:08:45.920 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 2 results
+2025-10-29 23:08:45.921 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:173 - Good results from Google FC, moving forward
+2025-10-29 23:08:45.921 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:08:45.922 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 4
+2025-10-29 23:08:45.923 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:08:45.924 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:08:45.925 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:08:45.931 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 4
+2025-10-29 23:08:45.933 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Satellite data collected over the past three decad... completed in 8.38s
+2025-10-29 23:08:45.934 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:45.938 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:45.940 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:45.941 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:45.941 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:45.942 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:46.708 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): This represents a significant acceleration from th completed in 0.75s
+2025-10-29 23:08:46.977 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): This represents a significant acceleration from th completed in 0.27s
+2025-10-29 23:08:47.282 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): This represents a significant acceleration from th completed in 0.31s
+2025-10-29 23:08:47.735 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): This represents a completed in 0.45s
+2025-10-29 23:08:47.737 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:08:47.738 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:49.162 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: This represents a significant acceleration from th
+2025-10-29 23:08:49.162 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: This represents a significant acceleration from th completed in 1.42s
+2025-10-29 23:08:50.162 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:08:51.179 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:08:51.179 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:08:51.181 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:08:51.181 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:08:51.181 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:08:51.183 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:08:52.035 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): represents significant acceleration from historica completed in 0.85s
+2025-10-29 23:08:52.265 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): represents significant acceleration from historica completed in 0.23s
+2025-10-29 23:08:52.571 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): represents significant acceleration from historica completed in 0.31s
+2025-10-29 23:08:52.949 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): represents significant acceleration completed in 0.37s
+2025-10-29 23:08:52.949 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:08:52.949 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:08:54.288 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: represents significant acceleration from historica
+2025-10-29 23:08:54.288 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: represents significant acceleration from historica completed in 1.34s
+2025-10-29 23:09:05.672 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-10-29 23:09:06.674 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:06.674 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:06.675 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:06.675 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:06.675 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:06.677 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:07.561 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): This represents a significant completed in 0.88s
+2025-10-29 23:09:07.951 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): This represents a significant completed in 0.39s
+2025-10-29 23:09:08.291 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): This represents a significant completed in 0.34s
+2025-10-29 23:09:08.687 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): This represents a completed in 0.40s
+2025-10-29 23:09:08.687 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:08.687 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:09.872 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: This represents a significant
+2025-10-29 23:09:09.873 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: This represents a significant completed in 1.19s
+2025-10-29 23:09:10.095 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:09:11.102 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:09:11.102 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 23:09:11.102 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:09:11.104 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:09:11.104 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:09:11.104 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 0
+2025-10-29 23:09:11.104 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: This represents a significant acceleration from th... completed in 25.17s
+2025-10-29 23:09:11.106 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:11.106 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:11.106 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:11.106 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:11.106 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:11.106 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:11.777 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Small island nations like Tuvalu and the Maldives  completed in 0.67s
+2025-10-29 23:09:12.024 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Small island nations like Tuvalu and the Maldives  completed in 0.25s
+2025-10-29 23:09:12.287 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Small island nations like Tuvalu and the Maldives  completed in 0.26s
+2025-10-29 23:09:12.690 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Small island nations completed in 0.40s
+2025-10-29 23:09:12.696 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:12.697 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:13.809 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Small island nations like Tuvalu and the Maldives 
+2025-10-29 23:09:13.810 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Small island nations like Tuvalu and the Maldives  completed in 1.11s
+2025-10-29 23:09:14.055 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:09:15.057 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:15.057 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:15.057 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:15.058 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:15.058 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:15.059 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:15.762 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Tuvalu Maldives completed in 0.70s
+2025-10-29 23:09:15.996 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Tuvalu Maldives completed in 0.23s
+2025-10-29 23:09:16.287 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Tuvalu Maldives completed in 0.29s
+2025-10-29 23:09:16.595 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Tuvalu Maldives completed in 0.31s
+2025-10-29 23:09:16.595 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:16.596 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:17.725 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Tuvalu Maldives
+2025-10-29 23:09:17.726 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Tuvalu Maldives completed in 1.13s
+2025-10-29 23:09:18.389 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 23:09:18.389 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 23:09:19.391 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:19.391 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:19.391 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:19.391 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:19.391 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:19.391 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:20.236 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): small island nations like tuvalu completed in 0.84s
+2025-10-29 23:09:20.479 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): small island nations like tuvalu completed in 0.24s
+2025-10-29 23:09:20.695 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): small island nations like tuvalu completed in 0.22s
+2025-10-29 23:09:21.080 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): small island nations completed in 0.38s
+2025-10-29 23:09:21.080 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:21.080 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:22.730 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: small island nations like tuvalu
+2025-10-29 23:09:22.730 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: small island nations like tuvalu completed in 1.65s
+2025-10-29 23:09:23.456 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 23:09:23.463 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 23:09:24.464 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:24.466 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:24.466 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:24.466 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:24.468 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:24.468 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:25.462 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Small island nations like completed in 0.99s
+2025-10-29 23:09:25.776 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Small island nations like completed in 0.31s
+2025-10-29 23:09:26.076 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Small island nations like completed in 0.30s
+2025-10-29 23:09:26.414 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Small island nations completed in 0.34s
+2025-10-29 23:09:26.415 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:26.416 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:27.687 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Small island nations like
+2025-10-29 23:09:27.687 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Small island nations like completed in 1.27s
+2025-10-29 23:09:28.694 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:09:28.694 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 23:09:28.694 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:09:28.694 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:09:28.694 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 4
+2025-10-29 23:09:28.694 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 4
+2025-10-29 23:09:28.694 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Small island nations like Tuvalu and the Maldives ... completed in 17.59s
+2025-10-29 23:09:28.694 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:28.714 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:28.714 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:28.716 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:28.716 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:28.717 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:29.689 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Major cities including Miami, Venice, New York, an completed in 0.97s
+2025-10-29 23:09:29.955 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Major cities including Miami, Venice, New York, an completed in 0.27s
+2025-10-29 23:09:30.247 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Major cities including Miami, Venice, New York, an completed in 0.29s
+2025-10-29 23:09:30.702 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Major cities including completed in 0.44s
+2025-10-29 23:09:30.708 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:30.709 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:32.252 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Major cities including Miami, Venice, New York, an
+2025-10-29 23:09:32.262 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Major cities including Miami, Venice, New York, an completed in 1.55s
+2025-10-29 23:09:33.172 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:09:34.173 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:34.182 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:34.182 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:34.182 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:34.182 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:34.182 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:35.033 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Miami Venice New York completed in 0.85s
+2025-10-29 23:09:35.297 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Miami Venice New York completed in 0.26s
+2025-10-29 23:09:35.547 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Miami Venice New York completed in 0.25s
+2025-10-29 23:09:35.837 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Miami Venice New completed in 0.29s
+2025-10-29 23:09:35.838 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:35.838 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:36.955 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Miami Venice New York
+2025-10-29 23:09:36.956 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Miami Venice New York completed in 1.12s
+2025-10-29 23:09:37.687 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 23:09:37.687 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 23:09:38.703 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:38.703 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:38.705 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:38.705 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:38.705 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:38.705 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:39.350 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): major cities including miami, venice, completed in 0.65s
+2025-10-29 23:09:39.595 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): major cities including miami, venice, completed in 0.25s
+2025-10-29 23:09:39.844 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): major cities including miami, venice, completed in 0.25s
+2025-10-29 23:09:40.162 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): major cities including completed in 0.32s
+2025-10-29 23:09:40.163 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:40.164 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:41.261 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: major cities including miami, venice,
+2025-10-29 23:09:41.263 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: major cities including miami, venice, completed in 1.10s
+2025-10-29 23:09:41.492 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:09:42.507 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:42.509 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:42.509 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:42.509 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:42.511 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:42.511 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:43.258 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Major cities including Miami, completed in 0.74s
+2025-10-29 23:09:43.709 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Major cities including Miami, completed in 0.44s
+2025-10-29 23:09:44.112 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Major cities including Miami, completed in 0.40s
+2025-10-29 23:09:44.557 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Major cities including completed in 0.43s
+2025-10-29 23:09:44.557 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:44.559 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:45.672 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Major cities including Miami,
+2025-10-29 23:09:45.672 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Major cities including Miami, completed in 1.11s
+2025-10-29 23:09:45.901 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:09:46.912 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:09:46.913 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 23:09:46.913 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:09:46.914 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:09:46.914 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 2
+2025-10-29 23:09:46.915 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 2
+2025-10-29 23:09:46.918 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Major cities including Miami, Venice, New York, an... completed in 18.22s
+2025-10-29 23:09:46.918 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:46.918 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:46.918 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:46.919 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:46.920 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:46.920 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:47.605 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): The World Bank estimates that by 2050, approximate completed in 0.68s
+2025-10-29 23:09:47.920 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): The World Bank estimates that 2050, approximately  completed in 0.32s
+2025-10-29 23:09:48.215 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): The World Bank estimates that by 2050, approximate completed in 0.29s
+2025-10-29 23:09:48.703 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 4)
+2025-10-29 23:09:48.705 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): The World Bank completed in 0.49s
+2025-10-29 23:09:48.705 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:09:48.706 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:49.857 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: The World Bank estimates that by 2050, approximate
+2025-10-29 23:09:49.858 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: The World Bank estimates that by 2050, approximate completed in 1.15s
+2025-10-29 23:09:50.858 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:50.858 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:50.858 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:50.858 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:50.858 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:50.858 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:51.599 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 1)
+2025-10-29 23:09:51.599 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): The World Bank completed in 0.73s
+2025-10-29 23:09:51.599 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:09:51.602 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:173 - Good results from Google FC, moving forward
+2025-10-29 23:09:51.602 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:09:51.602 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 3
+2025-10-29 23:09:51.602 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:09:51.602 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:09:51.604 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:09:51.604 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 3
+2025-10-29 23:09:51.606 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: The World Bank estimates that by 2050, approximate... completed in 4.69s
+2025-10-29 23:09:51.609 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:51.609 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:51.610 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:51.610 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:51.610 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:51.610 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:52.339 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Leading climate scientists from institutions such  completed in 0.73s
+2025-10-29 23:09:52.664 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Leading climate scientists from institutions such  completed in 0.33s
+2025-10-29 23:09:52.963 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Leading climate scientists from institutions such  completed in 0.30s
+2025-10-29 23:09:53.412 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 1 fact-checked claims (attempt 4)
+2025-10-29 23:09:53.412 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Leading climate scientists completed in 0.45s
+2025-10-29 23:09:53.414 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 1 results
+2025-10-29 23:09:53.414 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:54.687 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Leading climate scientists from institutions such 
+2025-10-29 23:09:54.687 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Leading climate scientists from institutions such  completed in 1.27s
+2025-10-29 23:09:55.675 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:09:56.677 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:09:56.677 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:09:56.679 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:09:56.679 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:09:56.679 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:09:56.681 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:09:57.612 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): MIT Stanford University the University of Cambridg completed in 0.93s
+2025-10-29 23:09:57.874 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): MIT Stanford University the University of Cambridg completed in 0.26s
+2025-10-29 23:09:58.130 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): MIT Stanford University the University of Cambridg completed in 0.26s
+2025-10-29 23:09:58.409 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): MIT Stanford University completed in 0.28s
+2025-10-29 23:09:58.424 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:09:58.426 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:09:59.727 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: MIT Stanford University the University of Cambridg
+2025-10-29 23:09:59.727 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: MIT Stanford University the University of Cambridg completed in 1.30s
+2025-10-29 23:09:59.964 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:10:00.967 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:00.969 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:00.969 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:00.970 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:00.970 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:00.970 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:02.173 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): leading climate scientists from institutions completed in 1.19s
+2025-10-29 23:10:02.537 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): leading climate scientists from institutions completed in 0.36s
+2025-10-29 23:10:02.892 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): leading climate scientists from institutions completed in 0.36s
+2025-10-29 23:10:03.268 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 1 fact-checked claims (attempt 4)
+2025-10-29 23:10:03.268 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): leading climate scientists completed in 0.37s
+2025-10-29 23:10:03.268 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 1 results
+2025-10-29 23:10:03.268 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:10:04.655 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: leading climate scientists from institutions
+2025-10-29 23:10:04.656 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: leading climate scientists from institutions completed in 1.39s
+2025-10-29 23:10:05.228 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 23:10:05.228 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 23:10:06.230 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:06.230 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:06.230 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:06.230 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:06.231 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:06.231 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:07.118 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Leading climate scientists from completed in 0.88s
+2025-10-29 23:10:07.477 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Leading climate scientists from completed in 0.36s
+2025-10-29 23:10:07.851 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Leading climate scientists from completed in 0.37s
+2025-10-29 23:10:08.173 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 1 fact-checked claims (attempt 4)
+2025-10-29 23:10:08.174 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Leading climate scientists completed in 0.32s
+2025-10-29 23:10:08.175 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 1 results
+2025-10-29 23:10:09.176 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:10:09.176 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 1
+2025-10-29 23:10:09.176 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:10:09.176 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:10:09.177 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 2
+2025-10-29 23:10:09.177 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 3
+2025-10-29 23:10:09.178 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Leading climate scientists from institutions such ... completed in 17.57s
+2025-10-29 23:10:09.178 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:09.178 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:09.178 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:09.180 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:09.180 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:09.180 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:09.876 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): The scientific consensus on human-caused climate c completed in 0.70s
+2025-10-29 23:10:10.181 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): The scientific consensus on human-caused climate c completed in 0.31s
+2025-10-29 23:10:10.470 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): The scientific consensus on human-caused climate c completed in 0.29s
+2025-10-29 23:10:10.904 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 4)
+2025-10-29 23:10:10.905 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): The scientific consensus completed in 0.43s
+2025-10-29 23:10:10.906 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:10:10.907 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:10:12.160 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: The scientific consensus on human-caused climate c
+2025-10-29 23:10:12.175 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: The scientific consensus on human-caused climate c completed in 1.27s
+2025-10-29 23:10:13.177 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:13.177 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:13.177 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:13.179 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:13.179 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:13.179 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:14.085 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): 97% Environmental Research Letters completed in 0.89s
+2025-10-29 23:10:14.330 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): 97% Environmental Research Letters completed in 0.24s
+2025-10-29 23:10:14.593 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): 97% Environmental Research Letters completed in 0.26s
+2025-10-29 23:10:14.883 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): 97% Environmental Research completed in 0.29s
+2025-10-29 23:10:14.885 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:10:14.885 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:10:16.234 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: 97% Environmental Research Letters
+2025-10-29 23:10:16.235 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: 97% Environmental Research Letters completed in 1.35s
+2025-10-29 23:10:17.237 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:17.238 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:17.239 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:17.239 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:17.239 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:17.240 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:18.215 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 1)
+2025-10-29 23:10:18.215 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): scientific consensus human-caused climate change completed in 0.97s
+2025-10-29 23:10:18.216 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 23:10:18.216 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:173 - Good results from Google FC, moving forward
+2025-10-29 23:10:18.216 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:10:18.217 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 4
+2025-10-29 23:10:18.218 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:10:18.218 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:10:18.219 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 23:10:18.219 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 4
+2025-10-29 23:10:18.221 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: The scientific consensus on human-caused climate c... completed in 9.04s
+2025-10-29 23:10:18.221 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:18.222 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:18.222 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:18.222 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:18.222 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:18.222 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:19.066 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Mitigation efforts are underway globally, with the completed in 0.84s
+2025-10-29 23:10:19.352 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Mitigation efforts are underway globally, with the completed in 0.29s
+2025-10-29 23:10:19.623 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Mitigation efforts are underway globally, with the completed in 0.27s
+2025-10-29 23:10:20.028 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Mitigation efforts are completed in 0.40s
+2025-10-29 23:10:20.028 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:10:20.028 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:10:21.359 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Mitigation efforts are underway globally, with the
+2025-10-29 23:10:21.359 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Mitigation efforts are underway globally, with the completed in 1.33s
+2025-10-29 23:10:22.254 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:10:23.262 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:23.262 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:23.265 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:23.265 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:23.265 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:23.267 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:24.110 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): mitigation efforts underway globally, with completed in 0.84s
+2025-10-29 23:10:24.361 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): mitigation efforts underway globally, with completed in 0.25s
+2025-10-29 23:10:24.627 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): mitigation efforts underway globally, with completed in 0.27s
+2025-10-29 23:10:24.970 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): mitigation efforts underway completed in 0.34s
+2025-10-29 23:10:24.970 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:10:24.970 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:10:26.222 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: mitigation efforts underway globally, with
+2025-10-29 23:10:26.222 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: mitigation efforts underway globally, with completed in 1.25s
+2025-10-29 23:10:26.457 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:362 - GDELT returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+2025-10-29 23:10:27.470 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 23:10:27.472 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 23:10:27.473 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): True
+2025-10-29 23:10:27.473 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 23:10:27.474 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 23:10:27.474 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 23:10:28.353 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Mitigation efforts are underway completed in 0.88s
+2025-10-29 23:10:28.604 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Mitigation efforts are underway completed in 0.25s
+2025-10-29 23:10:28.847 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Mitigation efforts are underway completed in 0.24s
+2025-10-29 23:10:29.214 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): Mitigation efforts are completed in 0.37s
+2025-10-29 23:10:29.218 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 23:10:29.218 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 23:10:30.554 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Mitigation efforts are underway
+2025-10-29 23:10:30.555 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Mitigation efforts are underway completed in 1.34s
+2025-10-29 23:10:31.432 | INFO     | src.agents.evidence_retrieval_agent:_search_gdelt:407 - ✓ GDELT: Found 2 articles
+2025-10-29 23:10:31.432 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:207 - ✓ GDELT: Found 2 results (fallback)
+2025-10-29 23:10:32.436 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 23:10:32.436 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 0
+2025-10-29 23:10:32.436 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 23:10:32.436 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 0
+2025-10-29 23:10:32.436 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 2
+2025-10-29 23:10:32.436 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 2
+2025-10-29 23:10:32.443 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Mitigation efforts are underway globally, with the... completed in 14.22s
+2025-10-29 23:10:32.444 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval completed in 140.88s
+2025-10-29 23:10:32.450 | INFO     | src.orchestration.nodes:evidence_retrieval_node:187 - ✓ Evidence retrieved: 33 items across 10 claims
+2025-10-29 23:10:32.450 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Climate change is causing sea levels to rise globally, accor...: 7 evidence items
+2025-10-29 23:10:32.450 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - The primary driver of this phenomenon is thermal expansion o...: 4 evidence items
+2025-10-29 23:10:32.450 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Satellite data collected over the past three decades shows t...: 4 evidence items
+2025-10-29 23:10:32.498 | INFO     | src.orchestration.nodes:stance_classification_node:204 - ============================================================
+2025-10-29 23:10:32.514 | INFO     | src.orchestration.nodes:stance_classification_node:205 - NODE 5: STANCE CLASSIFICATION
+2025-10-29 23:10:32.514 | INFO     | src.orchestration.nodes:stance_classification_node:206 - ============================================================
+2025-10-29 23:10:32.739 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 23:10:33.317 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 23:10:33.317 | INFO     | src.agents.llm_stance_agent:__init__:22 - LLM Stance Classifier (Groq) initialized
+2025-10-29 23:10:33.317 | INFO     | src.orchestration.nodes:stance_classification_node:214 - Classifying stance for evidence items
+2025-10-29 23:10:33.317 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:34 - Classifying stance with Groq LLM for all evidence
+2025-10-29 23:12:49.511 | WARNING  | src.agents.llm_stance_agent:classify_stance_batch:46 - Batch timeout reached (136.2s > 120s). Skipping remaining 1 claims.
+2025-10-29 23:12:49.513 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:94 - Stance classification complete: ✓31 | ✗0 | ⊘2
+2025-10-29 23:12:49.515 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:105 - Stance distribution: {'SUPPORTS': 2, 'REFUTES': 9, 'NEUTRAL': 22}
+2025-10-29 23:12:49.516 | INFO     | src.orchestration.nodes:stance_classification_node:221 - ✓ Stance classification complete
+2025-10-29 23:12:49.516 | INFO     | src.orchestration.nodes:stance_classification_node:222 - ============================================================
+2025-10-29 23:12:49.545 | INFO     | src.orchestration.nodes:aggregation_node:258 - ============================================================
+2025-10-29 23:12:49.545 | INFO     | src.orchestration.nodes:aggregation_node:259 - NODE 6: AGGREGATION - Generating verdicts...
+2025-10-29 23:12:49.545 | INFO     | src.orchestration.nodes:aggregation_node:260 - ============================================================
+2025-10-29 23:12:49.718 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 23:12:50.058 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 23:12:50.058 | INFO     | src.agents.verdict_agent:__init__:16 - Verdict Agent initialized
+2025-10-29 23:12:53.418 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: INCONCLUSIVE (0%)
+2025-10-29 23:12:53.421 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Climate change is causing sea levels to rise globally, accor...
+2025-10-29 23:12:53.421 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: INCONCLUSIVE
+2025-10-29 23:12:53.421 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 0%
+2025-10-29 23:12:56.822 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:12:56.824 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: The primary driver of this phenomenon is thermal expansion o...
+2025-10-29 23:12:56.826 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:12:56.826 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:00.221 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:13:00.221 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Satellite data collected over the past three decades shows t...
+2025-10-29 23:13:00.221 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:13:00.221 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:00.221 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: This represents a significant acceleration from the historic...
+2025-10-29 23:13:00.221 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: INCONCLUSIVE
+2025-10-29 23:13:00.221 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 0%
+2025-10-29 23:13:03.622 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:13:03.622 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Small island nations like Tuvalu and the Maldives face exist...
+2025-10-29 23:13:03.622 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:13:03.622 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:08.009 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:13:08.011 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Major cities including Miami, Venice, New York, and Jakarta ...
+2025-10-29 23:13:08.011 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:13:08.011 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:11.416 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:13:11.418 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: The World Bank estimates that by 2050, approximately 216 mil...
+2025-10-29 23:13:11.418 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:13:11.418 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:14.867 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:13:14.869 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Leading climate scientists from institutions such as MIT, St...
+2025-10-29 23:13:14.869 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:13:14.869 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:18.317 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:13:18.321 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: The scientific consensus on human-caused climate change and ...
+2025-10-29 23:13:18.321 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:13:18.321 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:22.704 | INFO     | src.agents.verdict_agent:_llm_verdict_generation:175 - ✓ Verdict generated: LIKELY_REAL (80%)
+2025-10-29 23:13:22.706 | INFO     | src.orchestration.nodes:aggregation_node:277 - Claim: Mitigation efforts are underway globally, with the Paris Agr...
+2025-10-29 23:13:22.706 | INFO     | src.orchestration.nodes:aggregation_node:278 -   Verdict: LIKELY_REAL
+2025-10-29 23:13:22.706 | INFO     | src.orchestration.nodes:aggregation_node:279 -   Confidence: 80%
+2025-10-29 23:13:22.708 | INFO     | src.orchestration.nodes:aggregation_node:293 - ✓ Article Verdict: LIKELY_REAL
+2025-10-29 23:13:22.708 | INFO     | src.orchestration.nodes:aggregation_node:294 -   Confidence: 64%
+2025-10-29 23:13:22.708 | INFO     | src.orchestration.nodes:aggregation_node:295 - ============================================================
+2025-10-29 23:13:22.733 | INFO     | src.orchestration.nodes:explainability_node:308 - ============================================================
+2025-10-29 23:13:22.733 | INFO     | src.orchestration.nodes:explainability_node:309 - NODE 7: EXPLAINABILITY - Generating explanations...
+2025-10-29 23:13:22.733 | INFO     | src.orchestration.nodes:explainability_node:310 - ============================================================
+2025-10-29 23:13:22.905 | INFO     | src.llm.groq_client:__init__:23 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 23:13:23.432 | INFO     | src.llm.groq_client:_check_connection:31 - ✓ Connected to Groq API
+2025-10-29 23:13:23.432 | INFO     | src.agents.explainability_agent:__init__:31 - Multi-Method Explainability Agent initialized
+2025-10-29 23:13:23.432 | INFO     | src.orchestration.nodes:explainability_node:324 - ✓ Explanations generated
+2025-10-29 23:13:23.432 | INFO     | src.orchestration.nodes:explainability_node:325 - ============================================================
+2025-10-29 23:13:23.461 | INFO     | src.orchestration.workflow:run_workflow:202 - 
+================================================================================
+2025-10-29 23:13:23.461 | INFO     | src.orchestration.workflow:run_workflow:203 - WORKFLOW COMPLETED
+2025-10-29 23:13:23.461 | INFO     | src.orchestration.workflow:run_workflow:204 - ================================================================================
+2025-10-29 23:13:23.461 | INFO     | src.orchestration.workflow:run_workflow:227 - Final verdict: LIKELY_REAL
+2025-10-29 23:13:23.462 | INFO     | __main__:analyze:135 - ✓ Analysis complete: LIKELY_REAL (64%)
+2025-10-29 23:13:23.462 | INFO     | __main__:analyze:136 - ================================================================================
+

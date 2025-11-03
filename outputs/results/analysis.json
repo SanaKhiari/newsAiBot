@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "verdict": {},
+  "claims": [],
+  "explanations": {},
+  "metadata": {
+    "started_at": "2025-10-29T13:23:02.697369",
+    "completed_at": "2025-10-29T13:25:06.025141",
+    "evidence_count": 0,
+    "claim_count": 0,
+    "analysis_duration": "2.1m"
+  }
+}

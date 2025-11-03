@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>IA NewsBot - Accueil</title>
+  <style>
+    /* --- RESET --- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: "Poppins", "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #f0f3f7, #e1e9f0);
+      color: #2d3436;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 260px;
+      background: linear-gradient(180deg, #30475e, #222831);
+      color: #f8f9fa;
+      padding: 20px;
+      transition: all 0.4s ease;
+      overflow: hidden;
+      box-shadow: 3px 0 15px rgba(0, 0, 0, 0.25);
+      z-index: 10;
+    }
+
+    .sidebar.closed {
+      width: 70px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.4em;
+      margin-bottom: 30px;
+      color: #f1c40f;
+      letter-spacing: 1px;
+      cursor: pointer; /* <-- le h2 devient cliquable */
+      transition: opacity 0.3s ease;
+    }
+
+    .sidebar.closed h2 { opacity: 0; }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      color: #f8f9fa;
+      text-decoration: none;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 1em;
+    }
+
+    .sidebar a:hover { background: rgba(241,196,15,0.15); transform: translateX(5px); }
+
+    .sidebar a span.icon { font-size: 1.4em; margin-right: 15px; min-width: 25px; text-align: center; transition: all 0.3s ease; }
+
+    .sidebar.closed a span.text { display: none; }
+
+    /* --- CONTENT --- */
+    .content {
+      margin-left: 260px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: margin-left 0.4s ease;
+      background: linear-gradient(145deg, #e9eff4, #cfd8dc);
+    }
+
+    .sidebar.closed ~ .content { margin-left: 70px; }
+
+    /* --- HERO CARD --- */
+    .hero-card {
+      background: white;
+      color: #2c3e50;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 600px;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    .hero-card h1 { font-size: 2em; margin-bottom: 15px; }
+    .hero-card p { font-size: 1.1em; margin-bottom: 30px; line-height:1.6; }
+    .hero-card a {
+      display: inline-block;
+      background: #f1c40f;
+      color: #2c3e50;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .hero-card a:hover { background: #e2b307; transform: scale(1.05); }
+
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(40px);}
+      to { opacity:1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <h2 id="sidebarToggle">📰 IA NewsBot</h2>
+    <a href="{{ url_for('home') }}">
+      <span class="icon">🏠</span>
+      <span class="text">Accueil</span>
+    </a>
+    <a href="{{ url_for('chat') }}">
+      <span class="icon">💬</span>
+      <span class="text">Chat IA</span>
+    </a>
+    <a href="#">
+      <span class="icon">🧠</span>
+      <span class="text">Dernières News</span>
+    </a>
+    <a href="#">
+      <span class="icon">⚙️</span>
+      <span class="text">Paramètres</span>
+    </a>
+  </div>
+
+  <div class="content">
+    <div class="hero-card">
+      <h1>Bienvenue sur <span style="color:#f1c40f;">IA NewsBot</span> 🤖</h1>
+      <p>Votre assistant intelligent pour suivre l’actualité, résumer les articles, et répondre à vos questions en temps réel.</p>
+      <a href="{{ url_for('chat') }}">Lancer une conversation</a>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const toggleBtn = document.getElementById("sidebarToggle");
+
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("closed");
+    });
+  </script>
+</body>
+</html>

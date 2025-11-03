@@ -1,0 +1,21 @@
+2025-10-29 12:48:10 | INFO     | src.api.server:<module>:48 - API Logger initialized
+2025-10-29 12:48:10 | INFO     | src.api.server:<module>:73 - CORS middleware configured
+2025-10-29 12:48:10 | INFO     | src.api.server:startup_event:84 - 
+================================================================================
+2025-10-29 12:48:10 | INFO     | src.api.server:startup_event:85 - FAKE NEWS DETECTION API STARTING
+2025-10-29 12:48:10 | INFO     | src.api.server:startup_event:86 - ================================================================================
+2025-10-29 12:48:10 | INFO     | src.api.server:startup_event:100 - ✓ Directories created
+2025-10-29 12:48:10 | INFO     | src.api.server:startup_event:101 -   - Output: ./outputs
+2025-10-29 12:48:10 | INFO     | src.api.server:startup_event:102 -   - Logs: ./outputs/logs
+2025-10-29 12:48:10 | INFO     | src.api.server:startup_event:103 -   - Reports: ./outputs/reports
+2025-10-29 12:48:10 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 12:48:11 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 19
+2025-10-29 12:48:11 | INFO     | src.api.server:startup_event:109 - ✓ Groq LLM initialized: llama-3.1-8b-instant
+2025-10-29 12:48:11 | INFO     | src.api.server:startup_event:114 - ✓ API startup complete
+2025-10-29 12:48:11 | INFO     | src.api.server:startup_event:115 - ================================================================================
+
+2025-10-29 12:48:16 | INFO     | src.api.server:shutdown_event:121 - 
+================================================================================
+2025-10-29 12:48:16 | INFO     | src.api.server:shutdown_event:122 - FAKE NEWS DETECTION API SHUTTING DOWN
+2025-10-29 12:48:16 | INFO     | src.api.server:shutdown_event:123 - ================================================================================
+2025-10-29 12:48:16 | INFO     | src.api.server:shutdown_event:124 - ✓ Cleanup complete

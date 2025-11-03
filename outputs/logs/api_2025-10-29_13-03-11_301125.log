@@ -1,0 +1,187 @@
+2025-10-29 13:03:11 | INFO     | src.api.server:<module>:48 - API Logger initialized
+2025-10-29 13:03:11 | INFO     | src.api.server:<module>:73 - CORS middleware configured
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:84 - 
+================================================================================
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:85 - FAKE NEWS DETECTION API STARTING
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:86 - ================================================================================
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:100 - ✓ Directories created
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:101 -   - Output: ./outputs
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:102 -   - Logs: ./outputs/logs
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:103 -   - Reports: ./outputs/reports
+2025-10-29 13:03:11 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 13:03:11 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 20
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:109 - ✓ Groq LLM initialized: llama-3.1-8b-instant
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:114 - ✓ API startup complete
+2025-10-29 13:03:11 | INFO     | src.api.server:startup_event:115 - ================================================================================
+
+2025-10-29 13:03:52 | INFO     | src.api.server:analyze_article:241 - 
+================================================================================
+2025-10-29 13:03:52 | INFO     | src.api.server:analyze_article:242 - NEW ANALYSIS REQUEST
+2025-10-29 13:03:52 | INFO     | src.api.server:analyze_article:243 - ================================================================================
+2025-10-29 13:03:52 | INFO     | src.api.server:analyze_article:261 - ✓ Request validated
+2025-10-29 13:03:52 | INFO     | src.api.server:analyze_article:262 -   Input: Text
+2025-10-29 13:03:52 | INFO     | src.api.server:analyze_article:263 -   Title: Coffee Study
+2025-10-29 13:03:52 | INFO     | src.api.server:analyze_article:268 - 
+→ Starting workflow execution...
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:202 - 
+================================================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:203 - STARTING FAKE NEWS DETECTION WORKFLOW
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:204 - ================================================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:217 - Initial state created
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:218 -   URL: None
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:219 -   Text length: 130 chars
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:220 -   Title: Coffee Study
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:87 - ============================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:88 - BUILDING LANGGRAPH WORKFLOW
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:89 - ============================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:95 - Adding nodes...
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:106 - ✓ 8 nodes added
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:109 - Setting entry point...
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:111 - ✓ Entry point: ingest
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:114 - Adding conditional edges...
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:125 -   ✓ ingest → [claim_detection | error_handler]
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:137 -   ✓ claim_detection → [embedding | explainability | error_handler]
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:148 -   ✓ evidence_retrieval → [stance_classification | error_handler]
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:151 - Adding linear edges...
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:154 -   ✓ embedding → evidence_retrieval
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:157 -   ✓ stance_classification → aggregation
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:160 -   ✓ aggregation → explainability
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:164 -   ✓ explainability → END
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:167 -   ✓ error_handler → END
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:170 - Compiling workflow...
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:173 - ============================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:174 - ✓ WORKFLOW COMPILED SUCCESSFULLY
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:build_workflow:175 - ============================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.workflow:run_workflow:227 - 
+Executing workflow...
+2025-10-29 13:03:52 | INFO     | src.orchestration.nodes:ingest_node:61 - ============================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.nodes:ingest_node:62 - NODE 1: INGEST - Parsing article...
+2025-10-29 13:03:52 | INFO     | src.orchestration.nodes:ingest_node:63 - ============================================================
+2025-10-29 13:03:52 | INFO     | src.orchestration.nodes:_get_agents:39 - Initializing agents (first run)...
+2025-10-29 13:03:53 | INFO     | src.agents.ingest_agent:__init__:22 - Loaded spaCy model: en_core_web_sm
+2025-10-29 13:03:53 | INFO     | src.agents.claim_detection_agent:__init__:22 - Claim detection agent initialized
+2025-10-29 13:03:53 | INFO     | src.agents.claim_embedding_agent:__init__:19 - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2025-10-29 13:03:57 | INFO     | src.agents.claim_embedding_agent:__init__:24 - Embedding model loaded successfully
+2025-10-29 13:03:57 | INFO     | src.agents.evidence_retrieval_agent:__init__:34 - Loaded 10 RSS feeds
+2025-10-29 13:03:57 | INFO     | src.agents.aggregation_agent:__init__:23 - Aggregation agent initialized
+2025-10-29 13:03:58 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 13:03:59 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 20
+2025-10-29 13:03:59 | INFO     | src.agents.explainability_agent:__init__:31 - Multi-Method Explainability Agent initialized
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:_get_agents:48 - All agents initialized
+2025-10-29 13:03:59 | INFO     | src.agents.ingest_agent:process_text:94 - Processing raw text input
+2025-10-29 13:03:59 | INFO     | src.agents.ingest_agent:process_text:114 - Successfully processed text: 2 sentences
+2025-10-29 13:03:59 | INFO     | src.utils:__exit__:120 - ✓ Article ingestion completed in 0.02s
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:ingest_node:80 - ✓ Article ingested: Coffee Study
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:ingest_node:81 -   Sentences: 2, Words: 21
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:claim_detection_node:98 - ============================================================
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:claim_detection_node:99 - NODE 2: CLAIM DETECTION - Extracting claims...
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:claim_detection_node:100 - ============================================================
+2025-10-29 13:03:59 | INFO     | src.agents.claim_detection_agent:extract_claims:54 - Extracting claims from 2 sentences
+2025-10-29 13:03:59 | INFO     | src.agents.claim_detection_agent:extract_claims:84 - Extracted 1 claims from 2 sentences
+2025-10-29 13:03:59 | INFO     | src.utils:__exit__:120 - ✓ Claim detection completed in 0.04s
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:claim_detection_node:112 - ✓ Claims extracted: 1 claims found
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:claim_detection_node:115 - Sample claims:
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   1. Coffee reduces cancer risk by 50 percent.... (confidence: 0.50)
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:embedding_node:134 - ============================================================
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:embedding_node:135 - NODE 3: EMBEDDING - Generating claim embeddings...
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:embedding_node:136 - ============================================================
+2025-10-29 13:03:59 | INFO     | src.agents.claim_embedding_agent:embed_claims:45 - Generating embeddings for 1 claims
+2025-10-29 13:03:59 | INFO     | src.agents.claim_embedding_agent:embed_claims:63 - Successfully embedded 1 claims
+2025-10-29 13:03:59 | INFO     | src.utils:__exit__:120 - ✓ Embedding generation completed in 0.25s
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:embedding_node:150 - ✓ Embeddings generated for 1 claims
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:evidence_retrieval_node:168 - ============================================================
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:evidence_retrieval_node:169 - NODE 4: EVIDENCE RETRIEVAL - Searching for evidence...
+2025-10-29 13:03:59 | INFO     | src.orchestration.nodes:evidence_retrieval_node:170 - ============================================================
+2025-10-29 13:03:59 | INFO     | src.agents.evidence_retrieval_agent:retrieve_evidence:67 - Retrieving evidence for 1 claims
+2025-10-29 13:03:59 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 13:03:59 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 13:03:59 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): False
+2025-10-29 13:03:59 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 13:03:59 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 13:03:59 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 13:04:01 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): Coffee reduces cancer risk by 50 percent completed in 1.66s
+2025-10-29 13:04:02 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): Coffee reduces cancer risk 50 percent completed in 0.79s
+2025-10-29 13:04:03 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 3)
+2025-10-29 13:04:03 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): Coffee completed in 1.27s
+2025-10-29 13:04:03 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 13:04:03 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 13:04:04 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: Coffee reduces cancer risk by 50 percent
+2025-10-29 13:04:04 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: Coffee reduces cancer risk by 50 percent completed in 1.06s
+2025-10-29 13:04:05 | INFO     | src.agents.evidence_retrieval_agent:_search_pubmed:107 - ✓ PubMed: Found 1 research articles
+2025-10-29 13:04:05 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:197 - ✓ PubMed: Found 1 results
+2025-10-29 13:04:06 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 13:04:06 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 13:04:06 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): False
+2025-10-29 13:04:06 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 13:04:06 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 13:04:06 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 13:04:08 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): 50 percent completed in 1.49s
+2025-10-29 13:04:09 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): 50 percent completed in 1.07s
+2025-10-29 13:04:09 | WARNING  | src.agents.google_fact_check_agent:search_claims:115 - ⚠ Google Fact Check over capacity (503), retrying...
+2025-10-29 13:04:17 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): 50 percent completed in 8.47s
+2025-10-29 13:04:18 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 4): 50 percent completed in 1.01s
+2025-10-29 13:04:18 | WARNING  | src.agents.google_fact_check_agent:search_claims:174 - No results found from Google Fact Check after 4 attempts
+2025-10-29 13:04:18 | INFO     | src.agents.snopes_agent:__init__:41 - ✓ Snopes fact-check agent initialized
+2025-10-29 13:04:19 | WARNING  | src.agents.snopes_agent:search_claims:74 - No Snopes results found for: 50 percent
+2025-10-29 13:04:19 | INFO     | src.utils:__exit__:120 - ✓ Snopes search: 50 percent completed in 1.10s
+2025-10-29 13:04:20 | INFO     | src.agents.google_fact_check_agent:__init__:48 - [DEBUG] Checking API key sources:
+2025-10-29 13:04:20 | INFO     | src.agents.google_fact_check_agent:__init__:49 -   - From parameter: False
+2025-10-29 13:04:20 | INFO     | src.agents.google_fact_check_agent:__init__:50 -   - From os.getenv(): False
+2025-10-29 13:04:20 | INFO     | src.agents.google_fact_check_agent:__init__:51 -   - From settings: True
+2025-10-29 13:04:20 | INFO     | src.agents.google_fact_check_agent:__init__:52 -   - Final API key set: True
+2025-10-29 13:04:20 | INFO     | src.agents.google_fact_check_agent:__init__:67 - ✓ Google Fact Check API agent initialized
+2025-10-29 13:04:22 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 1): coffee reduces cancer risk percent completed in 1.38s
+2025-10-29 13:04:23 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 2): coffee reduces cancer risk percent completed in 1.04s
+2025-10-29 13:04:24 | INFO     | src.agents.google_fact_check_agent:search_claims:145 - ✓ Google Fact Check: Found 3 fact-checked claims (attempt 3)
+2025-10-29 13:04:24 | INFO     | src.utils:__exit__:120 - ✓ Google Fact Check search (attempt 3): coffee completed in 1.27s
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:169 - ✓ Google FC: Found 3 results
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:173 - Good results from Google FC, moving forward
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:239 - 
+Evidence breakdown:
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:240 -   - Google Fact Check: 3
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:241 -   - Snopes: 0
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:242 -   - PubMed: 1
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:243 -   - GDELT: 0
+2025-10-29 13:04:24 | INFO     | src.agents.evidence_retrieval_agent:_retrieve_for_claim:244 -   - Total unique: 4
+2025-10-29 13:04:24 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Coffee reduces cancer risk by 50 percent.... completed in 24.67s
+2025-10-29 13:04:24 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval completed in 24.67s
+2025-10-29 13:04:24 | INFO     | src.orchestration.nodes:evidence_retrieval_node:187 - ✓ Evidence retrieved: 4 items across 1 claims
+2025-10-29 13:04:24 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Coffee reduces cancer risk by 50 percent....: 4 evidence items
+2025-10-29 13:04:24 | INFO     | src.orchestration.nodes:stance_classification_node:210 - ============================================================
+2025-10-29 13:04:24 | INFO     | src.orchestration.nodes:stance_classification_node:211 - NODE 5: STANCE CLASSIFICATION - LLM classification...
+2025-10-29 13:04:24 | INFO     | src.orchestration.nodes:stance_classification_node:212 - ============================================================
+2025-10-29 13:04:24 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-29 13:04:25 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 20
+2025-10-29 13:04:25 | INFO     | src.agents.llm_stance_agent:__init__:31 - LLM Stance Classifier (Groq) initialized
+2025-10-29 13:04:25 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:47 - Classifying stance with Groq LLM for all evidence
+2025-10-29 13:04:27 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:77 - Completed 4 Groq LLM stance classifications
+2025-10-29 13:04:27 | INFO     | src.utils:__exit__:120 - ✓ LLM stance classification completed in 2.95s
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:stance_classification_node:226 - ✓ LLM stance classification completed
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:stance_classification_node:248 - Classification breakdown:
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:stance_classification_node:249 -   SUPPORTS: 1 (25.0%)
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:stance_classification_node:250 -   REFUTES: 0 (0.0%)
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:stance_classification_node:251 -   NEUTRAL: 3 (75.0%)
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:aggregation_node:269 - ============================================================
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:aggregation_node:270 - NODE 6: AGGREGATION - Computing final verdict...
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:aggregation_node:271 - ============================================================
+2025-10-29 13:04:27 | INFO     | src.agents.aggregation_agent:aggregate_verdict:36 - Aggregating evidence into final verdict
+2025-10-29 13:04:27 | INFO     | src.utils:__exit__:120 - ✓ Evidence aggregation completed in 0.00s
+2025-10-29 13:04:27 | ERROR    | src.orchestration.nodes:aggregation_node:290 - ✗ Aggregation failed: can't subtract offset-naive and offset-aware datetimes
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:explainability_node:304 - ============================================================
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:explainability_node:305 - NODE 7: EXPLAINABILITY - Generating explanations...
+2025-10-29 13:04:27 | INFO     | src.orchestration.nodes:explainability_node:306 - ============================================================
+2025-10-29 13:04:27 | INFO     | src.agents.explainability_agent:generate_explanations:46 - Generating multi-method explanations
+2025-10-29 13:04:27 | INFO     | src.utils:__exit__:120 - ✓ Explanation generation completed in 0.00s
+2025-10-29 13:04:27 | ERROR    | src.orchestration.nodes:explainability_node:330 - ✗ Explainability failed: 'NoneType' object has no attribute 'get'
+2025-10-29 13:04:27 | INFO     | src.orchestration.workflow:run_workflow:231 - 
+================================================================================
+2025-10-29 13:04:27 | INFO     | src.orchestration.workflow:run_workflow:232 - WORKFLOW COMPLETED
+2025-10-29 13:04:27 | INFO     | src.orchestration.workflow:run_workflow:233 - ================================================================================
+2025-10-29 13:04:27 | ERROR    | src.api.server:analyze_article:347 - Analysis failed: 'Logger' object has no attribute 'error_handler'
+2025-10-29 13:04:27 | ERROR    | src.api.server:analyze_article:348 - ================================================================================
+2025-10-29 13:04:27 | ERROR    | src.api.server:http_exception_handler:486 - HTTP Exception: Analysis failed: 'Logger' object has no attribute 'error_handler'
+2025-10-29 13:22:00 | INFO     | src.api.server:shutdown_event:121 - 
+================================================================================
+2025-10-29 13:22:00 | INFO     | src.api.server:shutdown_event:122 - FAKE NEWS DETECTION API SHUTTING DOWN
+2025-10-29 13:22:00 | INFO     | src.api.server:shutdown_event:123 - ================================================================================
+2025-10-29 13:22:00 | INFO     | src.api.server:shutdown_event:124 - ✓ Cleanup complete

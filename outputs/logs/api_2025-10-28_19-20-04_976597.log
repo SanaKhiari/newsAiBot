@@ -1,0 +1,71 @@
+2025-10-28 19:20:04 | INFO     | src.api.server:<module>:48 - API Logger initialized
+2025-10-28 19:20:04 | INFO     | src.api.server:<module>:73 - CORS middleware configured
+2025-10-28 19:20:04 | INFO     | src.api.server:startup_event:84 - 
+================================================================================
+2025-10-28 19:20:04 | INFO     | src.api.server:startup_event:85 - FAKE NEWS DETECTION API STARTING
+2025-10-28 19:20:04 | INFO     | src.api.server:startup_event:86 - ================================================================================
+2025-10-28 19:20:04 | INFO     | src.api.server:startup_event:100 - ✓ Directories created
+2025-10-28 19:20:04 | INFO     | src.api.server:startup_event:101 -   - Output: ./outputs
+2025-10-28 19:20:04 | INFO     | src.api.server:startup_event:102 -   - Logs: ./outputs/logs
+2025-10-28 19:20:04 | INFO     | src.api.server:startup_event:103 -   - Reports: ./outputs/reports
+2025-10-28 19:20:05 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-28 19:20:05 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 19
+2025-10-28 19:20:05 | INFO     | src.api.server:startup_event:109 - ✓ Groq LLM initialized: llama-3.1-8b-instant
+2025-10-28 19:20:05 | INFO     | src.api.server:startup_event:114 - ✓ API startup complete
+2025-10-28 19:20:05 | INFO     | src.api.server:startup_event:115 - ================================================================================
+
+2025-10-28 19:20:30 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-28 19:20:32 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 19
+2025-10-28 19:22:18 | INFO     | src.api.server:analyze_article:241 - 
+================================================================================
+2025-10-28 19:22:18 | INFO     | src.api.server:analyze_article:242 - NEW ANALYSIS REQUEST
+2025-10-28 19:22:18 | INFO     | src.api.server:analyze_article:243 - ================================================================================
+2025-10-28 19:22:18 | INFO     | src.api.server:analyze_article:261 - ✓ Request validated
+2025-10-28 19:22:18 | INFO     | src.api.server:analyze_article:262 -   Input: Text
+2025-10-28 19:22:18 | INFO     | src.api.server:analyze_article:263 -   Title: Coffee Study
+2025-10-28 19:22:18 | INFO     | src.api.server:analyze_article:268 - 
+→ Starting workflow execution...
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:run_workflow:202 - 
+================================================================================
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:run_workflow:203 - STARTING FAKE NEWS DETECTION WORKFLOW
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:run_workflow:204 - ================================================================================
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:run_workflow:217 - Initial state created
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:run_workflow:218 -   URL: None
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:run_workflow:219 -   Text length: 190 chars
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:run_workflow:220 -   Title: Coffee Study
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:build_workflow:87 - ============================================================
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:build_workflow:88 - BUILDING LANGGRAPH WORKFLOW
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:build_workflow:89 - ============================================================
+2025-10-28 19:22:18 | INFO     | src.orchestration.workflow:build_workflow:95 - Adding nodes...
+2025-10-28 19:22:18 | ERROR    | src.orchestration.workflow:run_workflow:243 - Workflow execution failed: 'error' is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name.
+2025-10-28 19:22:18 | ERROR    | src.api.server:analyze_article:281 - Workflow error: 'error' is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name.
+2025-10-28 19:22:18 | ERROR    | src.api.server:http_exception_handler:486 - HTTP Exception: 'error' is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name.
+2025-10-28 19:23:30 | INFO     | src.api.server:analyze_article:241 - 
+================================================================================
+2025-10-28 19:23:30 | INFO     | src.api.server:analyze_article:242 - NEW ANALYSIS REQUEST
+2025-10-28 19:23:30 | INFO     | src.api.server:analyze_article:243 - ================================================================================
+2025-10-28 19:23:30 | INFO     | src.api.server:analyze_article:261 - ✓ Request validated
+2025-10-28 19:23:30 | INFO     | src.api.server:analyze_article:262 -   Input: URL
+2025-10-28 19:23:30 | INFO     | src.api.server:analyze_article:263 -   Title: None
+2025-10-28 19:23:30 | INFO     | src.api.server:analyze_article:268 - 
+→ Starting workflow execution...
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:run_workflow:202 - 
+================================================================================
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:run_workflow:203 - STARTING FAKE NEWS DETECTION WORKFLOW
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:run_workflow:204 - ================================================================================
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:run_workflow:217 - Initial state created
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:run_workflow:218 -   URL: https://www.bbc.com/news/world
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:run_workflow:219 -   Text length: 0 chars
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:run_workflow:220 -   Title: None
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:build_workflow:87 - ============================================================
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:build_workflow:88 - BUILDING LANGGRAPH WORKFLOW
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:build_workflow:89 - ============================================================
+2025-10-28 19:23:30 | INFO     | src.orchestration.workflow:build_workflow:95 - Adding nodes...
+2025-10-28 19:23:30 | ERROR    | src.orchestration.workflow:run_workflow:243 - Workflow execution failed: 'error' is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name.
+2025-10-28 19:23:30 | ERROR    | src.api.server:analyze_article:281 - Workflow error: 'error' is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name.
+2025-10-28 19:23:30 | ERROR    | src.api.server:http_exception_handler:486 - HTTP Exception: 'error' is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name.
+2025-10-28 19:29:59 | INFO     | src.api.server:shutdown_event:121 - 
+================================================================================
+2025-10-28 19:29:59 | INFO     | src.api.server:shutdown_event:122 - FAKE NEWS DETECTION API SHUTTING DOWN
+2025-10-28 19:29:59 | INFO     | src.api.server:shutdown_event:123 - ================================================================================
+2025-10-28 19:29:59 | INFO     | src.api.server:shutdown_event:124 - ✓ Cleanup complete

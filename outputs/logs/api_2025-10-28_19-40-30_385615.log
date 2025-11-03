@@ -1,0 +1,162 @@
+2025-10-28 19:40:30 | INFO     | src.api.server:<module>:48 - API Logger initialized
+2025-10-28 19:40:30 | INFO     | src.api.server:<module>:73 - CORS middleware configured
+2025-10-28 19:40:30 | INFO     | src.api.server:startup_event:84 - 
+================================================================================
+2025-10-28 19:40:30 | INFO     | src.api.server:startup_event:85 - FAKE NEWS DETECTION API STARTING
+2025-10-28 19:40:30 | INFO     | src.api.server:startup_event:86 - ================================================================================
+2025-10-28 19:40:30 | INFO     | src.api.server:startup_event:100 - ✓ Directories created
+2025-10-28 19:40:30 | INFO     | src.api.server:startup_event:101 -   - Output: ./outputs
+2025-10-28 19:40:30 | INFO     | src.api.server:startup_event:102 -   - Logs: ./outputs/logs
+2025-10-28 19:40:30 | INFO     | src.api.server:startup_event:103 -   - Reports: ./outputs/reports
+2025-10-28 19:40:30 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-28 19:40:31 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 19
+2025-10-28 19:40:31 | INFO     | src.api.server:startup_event:109 - ✓ Groq LLM initialized: llama-3.1-8b-instant
+2025-10-28 19:40:31 | INFO     | src.api.server:startup_event:114 - ✓ API startup complete
+2025-10-28 19:40:31 | INFO     | src.api.server:startup_event:115 - ================================================================================
+
+2025-10-28 19:41:53 | INFO     | src.api.server:analyze_article:241 - 
+================================================================================
+2025-10-28 19:41:53 | INFO     | src.api.server:analyze_article:242 - NEW ANALYSIS REQUEST
+2025-10-28 19:41:53 | INFO     | src.api.server:analyze_article:243 - ================================================================================
+2025-10-28 19:41:53 | INFO     | src.api.server:analyze_article:261 - ✓ Request validated
+2025-10-28 19:41:53 | INFO     | src.api.server:analyze_article:262 -   Input: Text
+2025-10-28 19:41:53 | INFO     | src.api.server:analyze_article:263 -   Title: Coffee Study
+2025-10-28 19:41:53 | INFO     | src.api.server:analyze_article:268 - 
+→ Starting workflow execution...
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:202 - 
+================================================================================
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:203 - STARTING FAKE NEWS DETECTION WORKFLOW
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:204 - ================================================================================
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:217 - Initial state created
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:218 -   URL: None
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:219 -   Text length: 82 chars
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:220 -   Title: Coffee Study
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:87 - ============================================================
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:88 - BUILDING LANGGRAPH WORKFLOW
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:89 - ============================================================
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:95 - Adding nodes...
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:106 - ✓ 8 nodes added
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:109 - Setting entry point...
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:111 - ✓ Entry point: ingest
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:114 - Adding conditional edges...
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:125 -   ✓ ingest → [claim_detection | error_handler]
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:137 -   ✓ claim_detection → [embedding | explainability | error_handler]
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:148 -   ✓ evidence_retrieval → [stance_classification | error_handler]
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:151 - Adding linear edges...
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:154 -   ✓ embedding → evidence_retrieval
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:157 -   ✓ stance_classification → aggregation
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:160 -   ✓ aggregation → explainability
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:164 -   ✓ explainability → END
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:167 -   ✓ error_handler → END
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:170 - Compiling workflow...
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:173 - ============================================================
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:174 - ✓ WORKFLOW COMPILED SUCCESSFULLY
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:build_workflow:175 - ============================================================
+2025-10-28 19:41:53 | INFO     | src.orchestration.workflow:run_workflow:227 - 
+Executing workflow...
+2025-10-28 19:41:54 | INFO     | src.orchestration.nodes:ingest_node:61 - ============================================================
+2025-10-28 19:41:54 | INFO     | src.orchestration.nodes:ingest_node:62 - NODE 1: INGEST - Parsing article...
+2025-10-28 19:41:54 | INFO     | src.orchestration.nodes:ingest_node:63 - ============================================================
+2025-10-28 19:41:54 | INFO     | src.orchestration.nodes:_get_agents:39 - Initializing agents (first run)...
+2025-10-28 19:41:54 | INFO     | src.agents.ingest_agent:__init__:22 - Loaded spaCy model: en_core_web_sm
+2025-10-28 19:41:55 | INFO     | src.agents.claim_detection_agent:__init__:22 - Claim detection agent initialized
+2025-10-28 19:41:55 | INFO     | src.agents.claim_embedding_agent:__init__:19 - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2025-10-28 19:41:59 | INFO     | src.agents.claim_embedding_agent:__init__:24 - Embedding model loaded successfully
+2025-10-28 19:41:59 | INFO     | src.agents.evidence_retrieval_agent:__init__:34 - Loaded 10 RSS feeds
+2025-10-28 19:41:59 | INFO     | src.agents.aggregation_agent:__init__:23 - Aggregation agent initialized
+2025-10-28 19:42:00 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-28 19:42:00 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 19
+2025-10-28 19:42:00 | INFO     | src.agents.explainability_agent:__init__:31 - Multi-Method Explainability Agent initialized
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:_get_agents:48 - All agents initialized
+2025-10-28 19:42:00 | INFO     | src.agents.ingest_agent:process_text:94 - Processing raw text input
+2025-10-28 19:42:00 | INFO     | src.agents.ingest_agent:process_text:114 - Successfully processed text: 1 sentences
+2025-10-28 19:42:00 | INFO     | src.utils:__exit__:120 - ✓ Article ingestion completed in 0.03s
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:ingest_node:80 - ✓ Article ingested: Coffee Study
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:ingest_node:81 -   Sentences: 1, Words: 12
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:claim_detection_node:98 - ============================================================
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:claim_detection_node:99 - NODE 2: CLAIM DETECTION - Extracting claims...
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:claim_detection_node:100 - ============================================================
+2025-10-28 19:42:00 | INFO     | src.agents.claim_detection_agent:extract_claims:54 - Extracting claims from 1 sentences
+2025-10-28 19:42:00 | INFO     | src.agents.claim_detection_agent:extract_claims:84 - Extracted 1 claims from 1 sentences
+2025-10-28 19:42:00 | INFO     | src.utils:__exit__:120 - ✓ Claim detection completed in 0.03s
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:claim_detection_node:112 - ✓ Claims extracted: 1 claims found
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:claim_detection_node:115 - Sample claims:
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:claim_detection_node:117 -   1. Scientists have discovered that drinking coffee reduces cancer risk by 50 percen... (confidence: 0.50)
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:embedding_node:134 - ============================================================
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:embedding_node:135 - NODE 3: EMBEDDING - Generating claim embeddings...
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:embedding_node:136 - ============================================================
+2025-10-28 19:42:00 | INFO     | src.agents.claim_embedding_agent:embed_claims:45 - Generating embeddings for 1 claims
+2025-10-28 19:42:00 | INFO     | src.agents.claim_embedding_agent:embed_claims:63 - Successfully embedded 1 claims
+2025-10-28 19:42:00 | INFO     | src.utils:__exit__:120 - ✓ Embedding generation completed in 0.17s
+2025-10-28 19:42:00 | INFO     | src.orchestration.nodes:embedding_node:150 - ✓ Embeddings generated for 1 claims
+2025-10-28 19:42:01 | INFO     | src.orchestration.nodes:evidence_retrieval_node:168 - ============================================================
+2025-10-28 19:42:01 | INFO     | src.orchestration.nodes:evidence_retrieval_node:169 - NODE 4: EVIDENCE RETRIEVAL - Searching for evidence...
+2025-10-28 19:42:01 | INFO     | src.orchestration.nodes:evidence_retrieval_node:170 - ============================================================
+2025-10-28 19:42:01 | INFO     | src.agents.evidence_retrieval_agent:retrieve_evidence:67 - Retrieving evidence for 2 claims
+2025-10-28 19:42:01 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:183 - GDELT search failed: Expecting value: line 1 column 1 (char 0)
+2025-10-28 19:42:10 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:183 - GDELT search failed: Expecting value: line 1 column 1 (char 0)
+2025-10-28 19:42:32 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Scientists have discovered that drinking coffee re... completed in 31.21s
+2025-10-28 19:42:33 | WARNING  | src.agents.evidence_retrieval_agent:_search_gdelt:161 - GDELT API returned status 429
+2025-10-28 19:42:41 | ERROR    | src.agents.evidence_retrieval_agent:_search_gdelt:183 - GDELT search failed: Expecting value: line 1 column 1 (char 0)
+2025-10-28 19:42:59 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval for claim: Scientists have discovered that drinking coffee re... completed in 26.83s
+2025-10-28 19:42:59 | INFO     | src.utils:__exit__:120 - ✓ Evidence retrieval completed in 58.05s
+2025-10-28 19:42:59 | INFO     | src.orchestration.nodes:evidence_retrieval_node:187 - ✓ Evidence retrieved: 16 items across 2 claims
+2025-10-28 19:42:59 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Scientists have discovered that drinking coffee reduces canc...: 8 evidence items
+2025-10-28 19:42:59 | INFO     | src.orchestration.nodes:evidence_retrieval_node:192 -   - Scientists have discovered that drinking coffee reduces canc...: 8 evidence items
+2025-10-28 19:42:59 | INFO     | src.orchestration.nodes:stance_classification_node:210 - ============================================================
+2025-10-28 19:42:59 | INFO     | src.orchestration.nodes:stance_classification_node:211 - NODE 5: STANCE CLASSIFICATION - LLM classification...
+2025-10-28 19:42:59 | INFO     | src.orchestration.nodes:stance_classification_node:212 - ============================================================
+2025-10-28 19:42:59 | INFO     | src.llm.groq_client:__init__:40 - Groq client initialized with model: llama-3.1-8b-instant
+2025-10-28 19:42:59 | INFO     | src.llm.groq_client:_check_connection:49 - ✓ Connected to Groq API. Available models: 19
+2025-10-28 19:42:59 | INFO     | src.agents.llm_stance_agent:__init__:31 - LLM Stance Classifier (Groq) initialized
+2025-10-28 19:42:59 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:47 - Classifying stance with Groq LLM for all evidence
+2025-10-28 19:44:10 | INFO     | src.agents.llm_stance_agent:classify_stance_batch:77 - Completed 32 Groq LLM stance classifications
+2025-10-28 19:44:10 | INFO     | src.utils:__exit__:120 - ✓ LLM stance classification completed in 71.27s
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:stance_classification_node:226 - ✓ LLM stance classification completed
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:stance_classification_node:248 - Classification breakdown:
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:stance_classification_node:249 -   SUPPORTS: 0 (0.0%)
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:stance_classification_node:250 -   REFUTES: 0 (0.0%)
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:stance_classification_node:251 -   NEUTRAL: 32 (100.0%)
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:aggregation_node:269 - ============================================================
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:aggregation_node:270 - NODE 6: AGGREGATION - Computing final verdict...
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:aggregation_node:271 - ============================================================
+2025-10-28 19:44:10 | INFO     | src.agents.aggregation_agent:aggregate_verdict:36 - Aggregating evidence into final verdict
+2025-10-28 19:44:10 | INFO     | src.agents.aggregation_agent:aggregate_verdict:46 - Final verdict: MIXED_OR_INCONCLUSIVE (confidence: 0.500)
+2025-10-28 19:44:10 | INFO     | src.utils:__exit__:120 - ✓ Evidence aggregation completed in 0.00s
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:aggregation_node:284 - ✓ Verdict computed
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:aggregation_node:285 -   Label: MIXED_OR_INCONCLUSIVE
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:aggregation_node:286 -   Confidence: 50.00%
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:aggregation_node:287 -   Reasoning: Mixed evidence: 0 supported, 0 refuted, 8 inconclusive
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:explainability_node:304 - ============================================================
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:explainability_node:305 - NODE 7: EXPLAINABILITY - Generating explanations...
+2025-10-28 19:44:10 | INFO     | src.orchestration.nodes:explainability_node:306 - ============================================================
+2025-10-28 19:44:10 | INFO     | src.agents.explainability_agent:generate_explanations:46 - Generating multi-method explanations
+2025-10-28 19:44:10 | INFO     | src.agents.explainability_agent:generate_explanations:58 - Generating LLM explanation
+2025-10-28 19:44:17 | INFO     | src.agents.explainability_agent:generate_explanations:73 - Ranking evidence by impact
+2025-10-28 19:44:17 | INFO     | src.agents.explainability_agent:generate_explanations:78 - Generating HTML report
+2025-10-28 19:44:17 | INFO     | src.agents.explainability_agent:generate_explanations:83 - All explanations generated
+2025-10-28 19:44:17 | INFO     | src.utils:__exit__:120 - ✓ Explanation generation completed in 7.32s
+2025-10-28 19:44:17 | INFO     | src.orchestration.nodes:explainability_node:324 - ✓ Explanations generated
+2025-10-28 19:44:17 | INFO     | src.orchestration.nodes:explainability_node:325 -   LLM explanation: Yes
+2025-10-28 19:44:17 | INFO     | src.orchestration.nodes:explainability_node:326 -   Evidence ranking: 0 items
+2025-10-28 19:44:17 | INFO     | src.orchestration.nodes:explainability_node:327 -   HTML report: Yes
+2025-10-28 19:44:17 | INFO     | src.orchestration.workflow:run_workflow:231 - 
+================================================================================
+2025-10-28 19:44:17 | INFO     | src.orchestration.workflow:run_workflow:232 - WORKFLOW COMPLETED
+2025-10-28 19:44:17 | INFO     | src.orchestration.workflow:run_workflow:233 - ================================================================================
+2025-10-28 19:44:17 | INFO     | src.orchestration.workflow:run_workflow:238 - Final verdict: MIXED_OR_INCONCLUSIVE
+2025-10-28 19:44:17 | INFO     | src.api.server:analyze_article:289 - 
+→ Preparing response...
+2025-10-28 19:44:17 | INFO     | src.api.server:analyze_article:329 - 
+✓ Analysis completed successfully
+2025-10-28 19:44:17 | INFO     | src.api.server:analyze_article:330 -   Verdict: MIXED_OR_INCONCLUSIVE
+2025-10-28 19:44:17 | INFO     | src.api.server:analyze_article:331 -   Confidence: 50.00%
+2025-10-28 19:44:17 | INFO     | src.api.server:analyze_article:332 -   Claims: 32
+2025-10-28 19:44:17 | INFO     | src.api.server:analyze_article:333 - ================================================================================
+
+2025-10-28 19:44:17 | INFO     | src.api.server:_save_report:436 - ✓ Report saved: Coffee-Study.html
+2025-10-28 20:07:21 | INFO     | src.api.server:shutdown_event:121 - 
+================================================================================
+2025-10-28 20:07:21 | INFO     | src.api.server:shutdown_event:122 - FAKE NEWS DETECTION API SHUTTING DOWN
+2025-10-28 20:07:21 | INFO     | src.api.server:shutdown_event:123 - ================================================================================
+2025-10-28 20:07:21 | INFO     | src.api.server:shutdown_event:124 - ✓ Cleanup complete

@@ -1,0 +1,143 @@
+{
+  "status": "success",
+  "verdict": {
+    "label": "LIKELY_REAL",
+    "confidence": 1.0,
+    "score": 0.4,
+    "claim_count": 1,
+    "real_claims": 1,
+    "fake_claims": 0,
+    "inconclusive_claims": 0,
+    "reasoning": "1/1 claims are supported by evidence",
+    "article_title": "Coffee Study",
+    "article_url": null,
+    "analyzed_at": "2025-10-29T13:54:35.529328"
+  },
+  "claims": [
+    {
+      "text": "Coffee reduces cancer risk by 50 percent.",
+      "start_char": 0,
+      "end_char": 41,
+      "sentence_index": 0,
+      "confidence": 0.5,
+      "entities": [
+        {
+          "text": "50 percent",
+          "label": "PERCENT",
+          "start": 30,
+          "end": 40
+        }
+      ],
+      "reasoning": "Contains entities: PERCENT; Contains numerical data",
+      "evidence": [
+        {
+          "url": "https://www.thip.media/health-news-fact-check/fact-check-are-coffee-lemon-juice-and-honey-effective-for-dark-circles/129071/",
+          "title": "Lemon juice, coffee, and honey can remove dark circles",
+          "snippet": "",
+          "source": "Google FC (Google Fact Check)",
+          "domain": "factchecktools.googleapis.com",
+          "publish_date": "2025-10-06T18:30:00+00:00",
+          "retrieved_at": "2025-10-29T12:52:58.415493+00:00",
+          "stance": "NEUTRAL",
+          "stance_confidence": 0.6,
+          "llm_reasoning": "The evidence does not address the claim's core topic (coffee reducing cancer risk) but rather discusses the removal of dark circles using lemon juice, coffee, and honey. Although it mentions coffee, the context is unrelated to cancer risk. However, the fact that coffee is mentioned in a verified source (Snopes) increases the confidence level. Snopes' verdict on this specific claim is 'Unproven', but it's not directly related to the cancer risk claim.",
+          "fact_checker": "Google Fact Check",
+          "original_rating": "Mostly False",
+          "source_priority": "primary"
+        },
+        {
+          "url": "https://www.snopes.com/fact-check/maxwell-house-coffee-name-change/",
+          "title": "In late September 2025, the coffee brand Maxwell House renamed itself \"Maxwell Apartment.\"",
+          "snippet": "",
+          "source": "Google FC (Google Fact Check)",
+          "domain": "factchecktools.googleapis.com",
+          "publish_date": "2025-10-29T12:52:58.415493+00:00",
+          "retrieved_at": "2025-10-29T12:52:58.415493+00:00",
+          "stance": "NEUTRAL",
+          "stance_confidence": 0.8,
+          "llm_reasoning": "The evidence is unrelated to the claim's core topic (coffee and cancer risk). The fact that a coffee brand renamed itself does not provide any information about the health effects of coffee consumption. However, since the evidence comes from a news source and not a fact-checking source, I've done my own analysis. The renaming of a coffee brand is a business decision and does not have any bearing on the scientific evidence regarding coffee's health effects.",
+          "fact_checker": "Google Fact Check",
+          "original_rating": "Mixture",
+          "source_priority": "primary"
+        },
+        {
+          "url": "https://www.wcnc.com/article/news/health/study-finds-coffee-drinking-boost-longevity-americans/275-78973e6a-6bd6-4b16-9c32-7cce291f020d",
+          "title": "Study finds coffee could help Americans live longer",
+          "snippet": "",
+          "source": "Google FC (Google Fact Check)",
+          "domain": "factchecktools.googleapis.com",
+          "publish_date": "2025-10-29T12:52:58.415493+00:00",
+          "retrieved_at": "2025-10-29T12:52:58.415493+00:00",
+          "stance": "NEUTRAL",
+          "stance_confidence": 0.6,
+          "llm_reasoning": "The evidence does not directly address the claim's core topic (coffee reducing cancer risk by 50 percent). However, it does mention a potential health benefit (living longer) which could be related to various factors, including reduced cancer risk. Since the fact-checking source is not explicitly mentioned, I will proceed with a moderate level of confidence. The study's findings are not directly comparable to the claim, but they do suggest a positive health outcome, which might be tangentially related to cancer risk reduction.",
+          "fact_checker": "Google Fact Check",
+          "original_rating": "Needs Context",
+          "source_priority": "primary"
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31152213/",
+          "title": "PubMed Research Article 31152213",
+          "snippet": "Medical research on Coffee reduces cancer risk by 50 percent",
+          "source": "PubMed",
+          "domain": "pubmed.ncbi.nlm.nih.gov",
+          "publish_date": "2025-10-29T12:53:00.360609+00:00",
+          "retrieved_at": "2025-10-29T12:53:00.360609+00:00",
+          "stance": "SUPPORTS",
+          "stance_confidence": 0.8,
+          "llm_reasoning": "The PubMed Research Article 31152213 is a scientific study that addresses the claim's core topic of coffee reducing cancer risk. Although the article does not explicitly state a 50% reduction, it does suggest a potential link between moderate coffee consumption and lower cancer risk. The study's findings are consistent with other research in the field, supporting the claim. However, the exact percentage reduction is not specified, which is why the confidence level is not 1.0.",
+          "source_priority": "tertiary"
+        }
+      ],
+      "verdict": {
+        "label": "LIKELY_REAL",
+        "confidence": 1.0,
+        "score": 0.4,
+        "supporting_count": 1,
+        "refuting_count": 0,
+        "neutral_count": 3,
+        "reasoning": "Evidence supports the claim"
+      }
+    }
+  ],
+  "explanations": {
+    "llm_explanation": "**Comprehensive Explanation of the Verdict: LIKELY_REAL**\n\nThe article was classified as LIKELY_REAL with a confidence score of 100.00%, indicating that the evidence strongly supports the claims made in the article. The verdict was reached after analyzing a single claim, which was found to be supported by evidence.\n\n**Decisive Evidence:**\n\nThe top evidence that influenced the verdict is a reference to a peer-reviewed study published in a reputable scientific journal. The study, which was conducted by a team of researchers from a well-established university, investigated the effects of coffee consumption on cognitive function. The study's findings, which were based on a large sample size and rigorous methodology, provided strong evidence to support the claim that moderate coffee consumption can have cognitive benefits.\n\n**Uncertainties or Limitations:**\n\nWhile the evidence strongly supports the claim, there are some limitations to consider. The study's findings may not be generalizable to all populations, as the sample size was primarily composed of young adults. Additionally, the study's methodology may not have accounted for other factors that could influence cognitive function, such as lifestyle habits or genetics.\n\n**Context for the Confidence Score:**\n\nThe confidence score of 100.00% reflects the strength of the evidence supporting the claim. The fact that the study was published in a reputable scientific journal and was conducted by a team of researchers from a well-established university adds to the credibility of the evidence. However, it's essential to note that the study's limitations and potential biases should be considered when interpreting the results. Overall, the evidence suggests that the article's claim is likely to be true, but further research is needed to confirm the findings and address the limitations.",
+    "llm_summary": "Unfortunately, I don't see any information about a \"Coffee Study\" in your message. However, I can provide a general explanation of what a fake news detection analysis might look like.\n\nIf you provide the actual text of the analysis, I can give you a 2-3 sentence summary for a general audience.",
+    "evidence_ranking": [],
+    "counterfactual_examples": [
+      {
+        "scenario": "Coffee has a significant negative impact on cardiovascular health",
+        "required_change": "Studies show a strong correlation between coffee consumption and increased risk of heart disease, stroke, and other cardiovascular conditions",
+        "impact": "Verdict changes to LIKELY_FALSE, as the benefits of reducing cancer risk are outweighed by the risks to cardiovascular health",
+        "likelihood": "low"
+      },
+      {
+        "scenario": "The 50% reduction in cancer risk is only observed in a specific population (e.g. smokers)",
+        "required_change": "Studies show that the cancer risk reduction is only significant in a specific demographic, such as smokers, and not in the general population",
+        "impact": "Verdict changes to UNVERIFIED, as the claim is no longer supported by evidence for the general population",
+        "likelihood": "medium"
+      },
+      {
+        "scenario": "The study was funded by a coffee industry lobby group",
+        "required_change": "It is revealed that the study was funded by a coffee industry lobby group, which could introduce bias into the results",
+        "impact": "Verdict changes to UNVERIFIED, as the credibility of the study is compromised by potential bias",
+        "likelihood": "high"
+      }
+    ],
+    "confidence_breakdown": {
+      "overall_confidence": 1.0,
+      "claim_count": 1,
+      "evidence_quality": "No evidence",
+      "source_reliability": "Unknown",
+      "llm_consistency": "Insufficient data"
+    },
+    "html_report": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Fake News Analysis Report</title>\n    <style>\n        body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; }\n        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }\n        .verdict { font-size: 28px; font-weight: bold; margin: 20px 0; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }\n        .verdict.LIKELY_REAL { background: #d4edda; color: #155724; border-left: 5px solid #28a745; }\n        .verdict.LIKELY_FAKE { background: #f8d7da; color: #721c24; border-left: 5px solid #dc3545; }\n        .verdict.MIXED_OR_INCONCLUSIVE { background: #fff3cd; color: #856404; border-left: 5px solid #ffc107; }\n        .section { background: white; margin: 20px 0; padding: 25px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }\n        .section h2 { color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px; }\n        .llm-explanation { background: #f8f9ff; padding: 20px; border-left: 4px solid #667eea; border-radius: 5px; line-height: 1.8; }\n        .claim { border-left: 4px solid #3498db; padding: 20px; margin: 15px 0; background: #f8f9fa; border-radius: 5px; }\n        .evidence { margin: 12px 0; padding: 15px; background: white; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }\n        .supports { border-left: 4px solid #28a745; }\n        .refutes { border-left: 4px solid #dc3545; }\n        .neutral { border-left: 4px solid #6c757d; }\n        .reasoning { font-style: italic; color: #666; margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 3px; }\n        table { width: 100%; border-collapse: collapse; margin: 20px 0; }\n        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }\n        th { background: #667eea; color: white; font-weight: 600; }\n        tr:hover { background: #f5f5f5; }\n    </style>\n</head>\n<body>\n    <div class=\"header\">\n        <h1>🔍 Fake News Detection Report</h1>\n        <h3>Multi-Method Explainable AI Analysis</h3>\n        <p><strong>Article:</strong> Coffee Study</p>\n        <p><strong>Analyzed:</strong> 2025-10-29T13:54:35.529328</p>\n    </div>\n    \n    <div class=\"verdict LIKELY_REAL\">\n        <h2>📊 Final Verdict: LIKELY REAL</h2>\n        <p><strong>Confidence:</strong> 100.00%</p>\n        <p><strong>Analysis:</strong> 1/1 claims are supported by evidence</p>\n    </div>\n    \n    <div class=\"section\">\n        <h2>🤖 LLM Explanation (Natural Language)</h2>\n        <div class=\"llm-explanation\">\n            **Comprehensive Explanation of the Verdict: LIKELY_REAL**\n\nThe article was classified as LIKELY_REAL with a confidence score of 100.00%, indicating that the evidence strongly supports the claims made in the article. The verdict was reached after analyzing a single claim, which was found to be supported by evidence.\n\n**Decisive Evidence:**\n\nThe top evidence that influenced the verdict is a reference to a peer-reviewed study published in a reputable scientific journal. The study, which was conducted by a team of researchers from a well-established university, investigated the effects of coffee consumption on cognitive function. The study's findings, which were based on a large sample size and rigorous methodology, provided strong evidence to support the claim that moderate coffee consumption can have cognitive benefits.\n\n**Uncertainties or Limitations:**\n\nWhile the evidence strongly supports the claim, there are some limitations to consider. The study's findings may not be generalizable to all populations, as the sample size was primarily composed of young adults. Additionally, the study's methodology may not have accounted for other factors that could influence cognitive function, such as lifestyle habits or genetics.\n\n**Context for the Confidence Score:**\n\nThe confidence score of 100.00% reflects the strength of the evidence supporting the claim. The fact that the study was published in a reputable scientific journal and was conducted by a team of researchers from a well-established university adds to the credibility of the evidence. However, it's essential to note that the study's limitations and potential biases should be considered when interpreting the results. Overall, the evidence suggests that the article's claim is likely to be true, but further research is needed to confirm the findings and address the limitations.\n        </div>\n        <p><strong>Summary:</strong> Unfortunately, I don't see any information about a \"Coffee Study\" in your message. However, I can provide a general explanation of what a fake news detection analysis might look like.\n\nIf you provide the actual text of the analysis, I can give you a 2-3 sentence summary for a general audience.</p>\n    </div>\n    \n    <div class=\"section\">\n        <h2>📈 Confidence Breakdown</h2>\n        <table>\n            <tr>\n                <th>Factor</th>\n                <th>Assessment</th>\n            </tr>\n            <tr>\n                <td><strong>Overall Confidence</strong></td>\n                <td>100.00%</td>\n            </tr>\n            <tr>\n                <td><strong>Evidence Quality</strong></td>\n                <td>No evidence</td>\n            </tr>\n            <tr>\n                <td><strong>Source Reliability</strong></td>\n                <td>Unknown</td>\n            </tr>\n            <tr>\n                <td><strong>LLM Consistency</strong></td>\n                <td>Insufficient data</td>\n            </tr>\n        </table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>🎯 Claims Analysis (1 claims detected)</h2>\n\n        <div class=\"claim\">\n            <h3>Claim 1: LIKELY REAL</h3>\n            <p><strong>Text:</strong> \"Coffee reduces cancer risk by 50 percent.\"</p>\n            <p><strong>Confidence:</strong> 100.00% | \n               <strong>Supporting:</strong> 1 | \n               <strong>Refuting:</strong> 0</p>\n</div>\n    </div>\n    \n    <div class=\"section\">\n        <h2>🏆 Most Impactful Evidence</h2>\n        <table>\n            <tr>\n                <th>Rank</th>\n                <th>Evidence</th>\n                <th>Stance</th>\n                <th>Confidence</th>\n                <th>Impact</th>\n            </tr>\n\n        </table>\n    </div>\n    \n    <div class=\"section\">\n        <h2>💡 Methodology Notes</h2>\n        <p><strong>Stance Classification:</strong> LLM-based zero-shot classification using Groq/Llama</p>\n        <p><strong>Explainability Methods:</strong></p>\n        <ul>\n            <li><strong>LLM Reasoning:</strong> Natural language explanations for each classification</li>\n            <li><strong>Evidence Attribution:</strong> Ranking evidence by impact on verdict</li>\n            <li><strong>Confidence Analysis:</strong> Assessment of evidence quality and source reliability</li>\n            <li><strong>Counterfactuals:</strong> Alternative scenarios that would change the verdict</li>\n        </ul>\n        <p><strong>Limitations:</strong> Evidence quality depends on freely accessible sources. Results depend on LLM reasoning quality.</p>\n    </div>\n    \n    <footer style=\"text-align: center; margin-top: 40px; padding: 20px; color: #666;\">\n        <p>Generated by Fake News Detection Multi-Agent Pipeline v2.0</p>\n        <p>Powered by LangChain • LangGraph • Groq (Llama 3.1)</p>\n    </footer>\n</body>\n</html>\n"
+  },
+  "metadata": {
+    "started_at": "2025-10-29T13:52:50.943867",
+    "completed_at": "2025-10-29T13:54:39.600819",
+    "evidence_count": 4,
+    "claim_count": 1,
+    "analysis_duration": "1.8m"
+  }
+}

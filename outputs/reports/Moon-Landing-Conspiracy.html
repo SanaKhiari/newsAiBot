@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Analysis Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .verdict { font-size: 28px; font-weight: bold; margin: 20px 0; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .verdict.LIKELY_REAL { background: #d4edda; color: #155724; border-left: 5px solid #28a745; }
+        .verdict.LIKELY_FAKE { background: #f8d7da; color: #721c24; border-left: 5px solid #dc3545; }
+        .verdict.MIXED_OR_INCONCLUSIVE { background: #fff3cd; color: #856404; border-left: 5px solid #ffc107; }
+        .section { background: white; margin: 20px 0; padding: 25px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .section h2 { color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .llm-explanation { background: #f8f9ff; padding: 20px; border-left: 4px solid #667eea; border-radius: 5px; line-height: 1.8; }
+        .claim { border-left: 4px solid #3498db; padding: 20px; margin: 15px 0; background: #f8f9fa; border-radius: 5px; }
+        .evidence { margin: 12px 0; padding: 15px; background: white; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .supports { border-left: 4px solid #28a745; }
+        .refutes { border-left: 4px solid #dc3545; }
+        .neutral { border-left: 4px solid #6c757d; }
+        .reasoning { font-style: italic; color: #666; margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #667eea; color: white; font-weight: 600; }
+        tr:hover { background: #f5f5f5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 Fake News Detection Report</h1>
+        <h3>Multi-Method Explainable AI Analysis</h3>
+        <p><strong>Article:</strong> Moon Landing Conspiracy</p>
+        <p><strong>Analyzed:</strong> 2025-10-29T13:58:31.993928</p>
+    </div>
+    
+    <div class="verdict LIKELY_FAKE">
+        <h2>📊 Final Verdict: LIKELY FAKE</h2>
+        <p><strong>Confidence:</strong> 100.00%</p>
+        <p><strong>Analysis:</strong> 2/2 claims appear false or misleading</p>
+    </div>
+    
+    <div class="section">
+        <h2>🤖 LLM Explanation (Natural Language)</h2>
+        <div class="llm-explanation">
+            **Comprehensive Explanation:**
+
+The article claiming the moon landing was a conspiracy was classified as LIKELY_FAKE with a confidence score of 100.00%. This verdict was reached after analyzing two key claims, neither of which was supported by credible evidence.
+
+The decisive evidence that led to this verdict includes:
+
+1. **Lack of credible sources**: The article cites unverifiable sources, including unnamed experts and untrustworthy websites. In contrast, credible sources such as NASA, the Apollo 11 mission logs, and peer-reviewed scientific journals provide overwhelming evidence of the moon landing's authenticity.
+2. **Contradictions with established facts**: The article claims that the American flag planted on the moon appears to be waving, despite the fact that there is no air on the moon to cause it to wave. This claim is refuted by the fact that the flag was actually stiffened with a rod to make it appear as if it were waving.
+
+Uncertainties or limitations in this analysis include:
+
+* The article's claims may be based on a misunderstanding or misinterpretation of the available evidence.
+* The article's authors may have intentionally presented misleading information to support their conspiracy theory.
+
+The confidence score of 100.00% reflects the overwhelming evidence that contradicts the article's claims. The lack of credible sources and the contradictions with established facts make it highly unlikely that the article's claims are true.
+        </div>
+        <p><strong>Summary:</strong> Unfortunately, I don't see the article content. However, I can provide a general explanation of what a fake news detection analysis might look like for a moon landing conspiracy theory.
+
+Here's a possible summary:
+
+A fake news detection analysis has found that claims about the moon landing being a conspiracy are likely false. The analysis, which is 100% confident in its findings, has identified two specific claims as being false or misleading. This suggests that the conspiracy theory about the moon landing is unfounded and not supported by credible evidence.</p>
+    </div>
+    
+    <div class="section">
+        <h2>📈 Confidence Breakdown</h2>
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Assessment</th>
+            </tr>
+            <tr>
+                <td><strong>Overall Confidence</strong></td>
+                <td>100.00%</td>
+            </tr>
+            <tr>
+                <td><strong>Evidence Quality</strong></td>
+                <td>No evidence</td>
+            </tr>
+            <tr>
+                <td><strong>Source Reliability</strong></td>
+                <td>Unknown</td>
+            </tr>
+            <tr>
+                <td><strong>LLM Consistency</strong></td>
+                <td>Insufficient data</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>🎯 Claims Analysis (2 claims detected)</h2>
+
+        <div class="claim">
+            <h3>Claim 1: LIKELY FAKE</h3>
+            <p><strong>Text:</strong> "The moon landing in 1969 was faked."</p>
+            <p><strong>Confidence:</strong> 100.00% | 
+               <strong>Supporting:</strong> 0 | 
+               <strong>Refuting:</strong> 3</p>
+</div>
+        <div class="claim">
+            <h3>Claim 2: LIKELY FAKE</h3>
+            <p><strong>Text:</strong> "NASA did not have the technology to safely land humans on the moon."</p>
+            <p><strong>Confidence:</strong> 100.00% | 
+               <strong>Supporting:</strong> 0 | 
+               <strong>Refuting:</strong> 1</p>
+</div>
+    </div>
+    
+    <div class="section">
+        <h2>🏆 Most Impactful Evidence</h2>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Evidence</th>
+                <th>Stance</th>
+                <th>Confidence</th>
+                <th>Impact</th>
+            </tr>
+
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>💡 Methodology Notes</h2>
+        <p><strong>Stance Classification:</strong> LLM-based zero-shot classification using Groq/Llama</p>
+        <p><strong>Explainability Methods:</strong></p>
+        <ul>
+            <li><strong>LLM Reasoning:</strong> Natural language explanations for each classification</li>
+            <li><strong>Evidence Attribution:</strong> Ranking evidence by impact on verdict</li>
+            <li><strong>Confidence Analysis:</strong> Assessment of evidence quality and source reliability</li>
+            <li><strong>Counterfactuals:</strong> Alternative scenarios that would change the verdict</li>
+        </ul>
+        <p><strong>Limitations:</strong> Evidence quality depends on freely accessible sources. Results depend on LLM reasoning quality.</p>
+    </div>
+    
+    <footer style="text-align: center; margin-top: 40px; padding: 20px; color: #666;">
+        <p>Generated by Fake News Detection Multi-Agent Pipeline v2.0</p>
+        <p>Powered by LangChain • LangGraph • Groq (Llama 3.1)</p>
+    </footer>
+</body>
+</html>

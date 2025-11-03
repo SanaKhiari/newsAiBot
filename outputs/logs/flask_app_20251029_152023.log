@@ -1,0 +1,9 @@
+2025-10-29 15:20:23 | INFO     | __main__:<module>:47 - Flask application initialized
+2025-10-29 15:20:23 | INFO     | __main__:initialize_app:54 - 
+================================================================================
+2025-10-29 15:20:23 | INFO     | __main__:initialize_app:55 - FAKE NEWS DETECTION SYSTEM - FLASK DEPLOYMENT
+2025-10-29 15:20:23 | INFO     | __main__:initialize_app:56 - ================================================================================
+2025-10-29 15:20:23 | INFO     | __main__:initialize_app:73 - ✓ Directories created
+2025-10-29 15:20:23 | INFO     | __main__:initialize_app:74 - ✓ Flask app ready for requests
+2025-10-29 15:20:23 | INFO     | __main__:initialize_app:75 - ================================================================================
+
