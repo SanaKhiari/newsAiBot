@@ -367,8 +367,13 @@
           <div class="loading-message" id="loading-message">Generating your post...</div>
         </div>
         
-        <div class="output hidden" id="output"></div>
-      </div>
+<div class="output hidden" id="output">
+  <!-- XAI Explanation Section -->
+  <div id="xai-section" style="display:none;">
+    <h3>🔍 XAI Analysis</h3>
+    <div class="xai-card" id="xai-card"></div>
+  </div>
+</div>      </div>
     </div>
     
     <footer>Made with ❤️ | AI-Powered Social Media Content</footer>
@@ -459,28 +464,67 @@
             </div>
           `;
         } else if (data.post_type === 'instagram') {
-          const validBadge = data.is_valid 
-            ? `<span class="similarity-badge valid">✓ Validated (${(data.similarity_score * 100).toFixed(1)}%)</span>`
-            : `<span class="similarity-badge invalid">⚠ Below threshold (${(data.similarity_score * 100).toFixed(1)}%)</span>`;
+  const xai = data.xai_explanation || {};
+  
+  // Badge de validation avec couleur XAI
+  const badgeColor = xai.color || 'blue';
+  const validBadge = data.is_valid 
+    ? `<span class="similarity-badge valid" style="background-color: ${badgeColor}20; color: ${badgeColor};">
+         ✓ ${xai.interpretation || 'Validated'} (${(data.similarity_score * 100).toFixed(1)}%)
+       </span>`
+    : `<span class="similarity-badge invalid">
+         ⚠ ${xai.interpretation || 'Below threshold'} (${(data.similarity_score * 100).toFixed(1)}%)
+       </span>`;
 
-          output.innerHTML = `
-            <h3>📸 Instagram Post Generated</h3>
-            <div class="result-content">
-              <div class="caption-result">${data.caption}</div>
-              ${validBadge}
-            </div>
-            <div class="image-preview">
-              <img src="/download-image?filename=${data.image_filename}" alt="Generated Image">
-              <br>
-              <a href="/download-image?filename=${data.image_filename}" class="download-btn" download>
-                ⬇️ Download Image
-              </a>
-            </div>
-            <div style="font-size: 14px; color: #666; margin-top: 15px;">
-              <strong>Summary:</strong> ${data.summary}
-            </div>
-          `;
-        }
+  // Historique des tentatives
+  let attemptsHTML = '';
+  if (data.attempts_history && data.attempts_history.length > 1) {
+    attemptsHTML = '<h4>📊 Generation Attempts:</h4><ul>';
+    data.attempts_history.forEach(att => {
+      const icon = att.similarity_score >= data.threshold ? '✅' : '⚠️';
+      attemptsHTML += `<li>${icon} Attempt ${att.attempt}: ${(att.similarity_score * 100).toFixed(1)}%</li>`;
+    });
+    attemptsHTML += '</ul>';
+  }
+
+  // Explication XAI détaillée
+  let xaiHTML = '';
+  if (xai.recommendation) {
+    xaiHTML = `
+      <div class="xai-explanation" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+        <h4>🤖 AI Explanation:</h4>
+        <p><strong>Quality:</strong> ${xai.interpretation}</p>
+        <p><strong>Recommendation:</strong> ${xai.recommendation}</p>
+        ${xai.keywords_detected ? `<p><strong>Key concepts:</strong> ${xai.keywords_detected.join(', ')}</p>` : ''}
+      </div>
+    `;
+  }
+
+  output.innerHTML = `
+    <h3>📸 Instagram Post Generated</h3>
+    <div class="result-content">
+      <div class="caption-result">${data.caption}</div>
+      ${validBadge}
+    </div>
+    
+    ${attemptsHTML}
+    
+    <div class="image-preview">
+      <img src="/download-image?filename=${data.image_filename}" alt="Generated Image">
+      <br>
+      <a href="/download-image?filename=${data.image_filename}" class="download-btn" download>
+        ⬇️ Download Image
+      </a>
+    </div>
+    
+    ${xaiHTML}
+    
+    <div style="font-size: 14px; color: #666; margin-top: 15px;">
+      <strong>Summary:</strong> ${data.summary}
+      <br><strong>Total attempts:</strong> ${data.total_attempts}/${data.threshold ? '3' : 'N/A'}
+    </div>
+  `;
+}
 
       } catch (error) {
         output.classList.remove('hidden');
