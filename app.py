@@ -1,37 +1,25 @@
-import os
-from flask import Flask, render_template
-from dotenv import load_dotenv
-from groq import Groq
-import PyPDF2
-
-from AIWritingCompanion import chat
-from SocialMediaGenerator import social_media_post, download_image
+from flask import Flask, render_template, request, jsonify
+from mistral_helper import fetch_football_news, retrieve_articles, generate_response_from_articles
 
 app = Flask(__name__)
 
-# ------------ PAGE D'ACCUEIL ------------
+# Charger les données une seule fois au démarrage
+football_df, index, embeddings = fetch_football_news()
+
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("index.html")
 
-# ------------ PAGE CHAT AI ------------
-app.add_url_rule("/chat", view_func=chat, methods=["GET", "POST"], endpoint="chat")
+@app.route("/ask", methods=["POST"])
+def ask():
+    user_query = request.json.get("query")
 
-# ------------ PAGE SOCIAL MEDIA GENERATOR ------------
-@app.route("/social-media", methods=["GET"])
-def social_media_page():
-    """Affiche la page de génération de posts sociaux"""
-    return render_template("social_media.html")
+    # Step 1: retrieve relevant articles (same as in Colab)
+    articles = retrieve_articles(user_query, football_df, index, top_k=10)
 
-@app.route("/generate-post", methods=["POST"])
-def generate_post():
-    """API pour générer un post social"""
-    return social_media_post()
-
-@app.route("/download-image", methods=["GET"])
-def download_image_route():
-    """API pour télécharger l'image générée"""
-    return download_image()
+    # Step 2: generate response using the exact same logic as Colab
+    answer = generate_response_from_articles(user_query, articles)
+    return jsonify({"answer": answer})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5002, debug=True)
+    app.run(debug=True)
